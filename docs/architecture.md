@@ -1,5 +1,5 @@
 # SecureIoMT Architecture
-
+```
 Medical Device Simulators (Rayane)
         ↓ MQTT
 Gateway IoMT (Youssef)
@@ -7,6 +7,7 @@ Gateway IoMT (Youssef)
 IDS Detection Engine (Ilyas)
         ↓ Alerts
 Dashboard + LLM Analysis (Karim)
+```
 
 Technologies:
 - Python
