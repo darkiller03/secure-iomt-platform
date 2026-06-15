@@ -7,6 +7,7 @@ import streamlit as st
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEVICES_FILE = BASE_DIR / "data" / "devices.json"
 ALERTS_FILE = BASE_DIR / "data" / "alerts.json"
+LOGS_FILE = BASE_DIR / "data" / "logs.json"
 
 st.set_page_config(page_title="SecureIoMT", layout="wide")
 
@@ -22,11 +23,12 @@ def load_json(path, default):
 
 devices = load_json(DEVICES_FILE, [])
 alerts = load_json(ALERTS_FILE, [])
-
-col1, col2, col3 = st.columns(3)
+logs = load_json(LOGS_FILE, [])
+col1, col2, col3, col4 = st.columns(4)
 col1.metric("Connected Devices", len(devices))
 col2.metric("Security Alerts", len(alerts))
 col3.metric("System Status", "Online")
+col4.metric("Log Events", len(logs))
 
 st.divider()
 
@@ -45,3 +47,11 @@ else:
 
 st.subheader("LLM Incident Analysis")
 st.info("Waiting for IDS alerts to generate analysis.")
+
+st.subheader("System Logs")
+
+if logs:
+    logs_df = pd.DataFrame(logs)
+    st.dataframe(logs_df, width="stretch")
+else:
+    st.info("No system logs available.")

@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2026-06-15T13:00:00",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Message received from HRM001"
+  },
+  {
+    "timestamp": "2026-06-15T13:00:05",
+    "source": "IDS",
+    "level": "WARNING",
+    "message": "Abnormal heart rate detected on HRM001"
+  }
+]
