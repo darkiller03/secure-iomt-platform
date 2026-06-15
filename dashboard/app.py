@@ -55,3 +55,24 @@ if logs:
     st.dataframe(logs_df, width="stretch")
 else:
     st.info("No system logs available.")
+
+st.subheader("LLM Incident Analysis")
+
+if alerts:
+    alert = alerts[0]
+
+    analysis = f"""
+    Incident detected: {alert['type']}
+
+    Affected device: {alert['device']}
+
+    Severity: {alert['severity']}
+
+    Recommendation:
+    Verify device integrity and isolate the device if abnormal behavior persists.
+    """
+
+    st.warning(analysis)
+
+else:
+    st.info("No incidents detected. Waiting for IDS alerts.")
