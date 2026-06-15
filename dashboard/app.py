@@ -32,14 +32,14 @@ st.divider()
 
 st.subheader("Medical Devices")
 if devices:
-    st.dataframe(pd.DataFrame(devices), use_container_width=True)
+    st.dataframe(pd.DataFrame(devices), width="stretch")
 else:
     st.info("No device data available.")
 
 st.subheader("Security Alerts")
 if alerts:
     st.error("Alerts detected")
-    st.dataframe(pd.DataFrame(alerts), use_container_width=True)
+    st.dataframe(pd.DataFrame(alerts), width="stretch")
 else:
     st.success("No security alerts detected.")
 
