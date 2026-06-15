@@ -14,5 +14,13 @@
     "value": 36.8,
     "unit": "°C",
     "status": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 98,
+    "unit": "%",
+    "status": "normal"
   }
 ]
