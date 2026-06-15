@@ -20,6 +20,21 @@ REQUIRED_FIELDS = [
     "timestamp"
 ]
 
+AUTHORIZED_DEVICES = {
+    "HRM001": {
+        "device_type": "heart_monitor"
+    },
+    "INS001": {
+        "device_type": "insulin_pump"
+    },
+    "TMP001": {
+        "device_type": "smart_thermometer"
+    },
+    "OXY001": {
+        "device_type": "oximeter"
+    }
+}
+
 
 def write_log(level, message):
     LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -69,6 +84,24 @@ def validate_message(data):
         if field not in data:
             return False, f"Missing field: {field}"
 
+    device_id = data["device_id"]
+    device_type = data["device_type"]
+    value = data["value"]
+
+    if device_id not in AUTHORIZED_DEVICES:
+        return False, f"Unknown device ID: {device_id}"
+
+    expected_type = AUTHORIZED_DEVICES[device_id]["device_type"]
+
+    if device_type != expected_type:
+        return False, (
+            f"Invalid device type for {device_id}. "
+            f"Expected {expected_type}"
+        )
+
+    if not isinstance(value, (int, float)):
+        return False, "Value must be numeric"
+
     return True, "Valid message"
 
 
@@ -77,10 +110,19 @@ def on_connect(client, userdata, flags, rc):
         print("Gateway connected to MQTT broker")
         client.subscribe(TOPIC)
         print(f"Subscribed to topic: {TOPIC}")
-        write_log("INFO", "Gateway connected to MQTT broker")
+
+        write_log(
+            "INFO",
+            "Gateway connected to MQTT broker"
+        )
+
     else:
         print("Connection failed")
-        write_log("ERROR", "Gateway connection failed")
+
+        write_log(
+            "ERROR",
+            "Gateway connection failed"
+        )
 
 
 def on_message(client, userdata, msg):
@@ -92,12 +134,17 @@ def on_message(client, userdata, msg):
 
         if is_valid:
             device_id = data["device_id"]
+            device_type = data["device_type"]
 
-            print(f"VALID MESSAGE from {device_id}")
+            print(
+                f"VALID MESSAGE from "
+                f"{device_id} ({device_type})"
+            )
 
             write_log(
                 "INFO",
-                f"Valid message received from {device_id}"
+                f"Valid message received from "
+                f"{device_id} ({device_type})"
             )
 
             save_validated_data(data)
@@ -111,12 +158,20 @@ def on_message(client, userdata, msg):
             )
 
     except json.JSONDecodeError:
-        print("INVALID MESSAGE")
-        write_log("ERROR", "Invalid JSON received")
+        print("INVALID JSON")
+
+        write_log(
+            "ERROR",
+            "Invalid JSON received"
+        )
 
     except Exception as error:
         print("GATEWAY ERROR")
-        write_log("ERROR", f"Gateway error: {error}")
+
+        write_log(
+            "ERROR",
+            f"Gateway error: {error}"
+        )
 
 
 client = mqtt.Client()
@@ -124,9 +179,11 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect(BROKER_HOST, BROKER_PORT)
+client.connect(
+    BROKER_HOST,
+    BROKER_PORT
+)
 
 print("Gateway started")
 
 client.loop_forever()
-
