@@ -22,5 +22,17 @@
     "source": "Gateway",
     "level": "INFO",
     "message": "Valid message received from HRM001"
+  },
+  {
+    "timestamp": "2026-06-15T16:47:43",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Gateway connected to MQTT broker"
+  },
+  {
+    "timestamp": "2026-06-15T16:48:17",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001"
   }
 ]
