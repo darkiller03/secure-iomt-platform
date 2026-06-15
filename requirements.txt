@@ -1,0 +1,6 @@
+streamlit
+pandas
+scikit-learn
+paho-mqtt
+requests
+psutil
