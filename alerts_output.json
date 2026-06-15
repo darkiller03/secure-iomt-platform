@@ -1,0 +1,32 @@
+[
+  {
+    "alert_id": "ALT-0001",
+    "timestamp": "2026-06-15T13:39:29Z",
+    "device_id": "HRM001",
+    "alert_type": "Data Injection",
+    "severity": "HIGH",
+    "anomaly_score": 1.0,
+    "description": "Heart rate value outside acceptable range",
+    "recommended_action": "Verify sensor integrity"
+  },
+  {
+    "alert_id": "ALT-0002",
+    "timestamp": "2026-06-15T13:39:29Z",
+    "device_id": "FAKE123",
+    "alert_type": "Device Spoofing",
+    "severity": "MEDIUM",
+    "anomaly_score": 1.0,
+    "description": "Unknown device identifier detected",
+    "recommended_action": "Verify device identity and network access"
+  },
+  {
+    "alert_id": "ALT-0003",
+    "timestamp": "2026-06-15T13:39:29Z",
+    "device_id": "HRM001",
+    "alert_type": "DoS",
+    "severity": "HIGH",
+    "anomaly_score": 1.0,
+    "description": "High message rate from device (6 msgs in 2.0s)",
+    "recommended_action": "Rate-limit or isolate the device"
+  }
+]
