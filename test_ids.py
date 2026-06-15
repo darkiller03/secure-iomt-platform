@@ -10,7 +10,7 @@ import time
 from ids import IDS
 
 
-def run_tests(sample_path="sample_data.json", output_path="alerts_output.json", metrics_path="metrics_output.json"):
+def run_tests(sample_path="multi_device_dataset.json", output_path="alerts_output.json", metrics_path="metrics_output.json"):
     ids = IDS()
     alerts = []
     predictions = []
@@ -32,7 +32,10 @@ def run_tests(sample_path="sample_data.json", output_path="alerts_output.json", 
         if expected_label == "normal" and predicted_label == "attack":
             print("FALSE POSITIVE detected:")
             print(json.dumps(msg, indent=2))
-            print("Reason:", result.get("alert_type"), "-", result.get("description"))
+            if result is not None:
+                print("Reason:", result.get("alert_type"), "-", result.get("description"))
+            else:
+                print("Reason: unexpected alert state")
             print()
         elif expected_label == "attack" and predicted_label == "normal":
             print("FALSE NEGATIVE detected:")
@@ -68,7 +71,7 @@ def run_tests(sample_path="sample_data.json", output_path="alerts_output.json", 
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    sample_path = args[0] if len(args) > 0 else "sample_data.json"
+    sample_path = args[0] if len(args) > 0 else "multi_device_dataset.json"
     output_path = args[1] if len(args) > 1 else "alerts_output.json"
     metrics_path = args[2] if len(args) > 2 else "metrics_output.json"
     run_tests(sample_path=sample_path, output_path=output_path, metrics_path=metrics_path)

@@ -13,9 +13,11 @@ The Gateway sends medical telemetry to the IDS using the `POST /detect` endpoint
 {
   "device_id": "HRM001",
   "patient_id": "P001",
-  "device_type": "HeartRateMonitor",
-  "heart_rate": 72,
-  "timestamp": "2026-06-01T10:15:00Z"
+  "device_type": "heart_monitor",
+  "value": 98,
+  "unit": "bpm",
+  "timestamp": "2026-06-15T16:47:42.485543",
+  "status": "normal"
 }
 ```
 
@@ -24,7 +26,8 @@ The Gateway sends medical telemetry to the IDS using the `POST /detect` endpoint
 - `device_id`: string, unique identifier for the device.
 - `patient_id`: string, identifier for the patient.
 - `device_type`: string, type of medical device.
-- `heart_rate`: integer or float, measured heart rate.
+- `value`: integer or float, measured reading value.
+- `unit`: string, measurement unit such as `bpm`.
 - `timestamp`: string, ISO 8601 UTC timestamp.
 
 ### Optional fields
@@ -87,9 +90,11 @@ curl -X POST http://localhost:8000/detect \
   -d '{
     "device_id": "HRM001",
     "patient_id": "P001",
-    "device_type": "HeartRateMonitor",
-    "heart_rate": 250,
-    "timestamp": "2026-06-01T10:15:00Z"
+    "device_type": "heart_monitor",
+    "value": 250,
+    "unit": "bpm",
+    "timestamp": "2026-06-01T10:15:00Z",
+    "status": "alert"
   }'
 ```
 
@@ -128,20 +133,18 @@ curl -X POST http://localhost:8000/detect \
 #### Response example
 
 ```json
-{
-  "alerts": [
-    {
-      "alert_id": "ALT-0001",
-      "timestamp": "2026-06-01T10:15:12Z",
-      "device_id": "HRM001",
-      "alert_type": "Data Injection",
-      "severity": "HIGH",
-      "anomaly_score": 0.94,
-      "description": "Heart rate value exceeds normal range",
-      "recommended_action": "Verify sensor integrity"
-    }
-  ]
-}
+[
+  {
+    "alert_id": "ALT-0001",
+    "timestamp": "2026-06-01T10:15:12Z",
+    "device_id": "HRM001",
+    "alert_type": "Data Injection",
+    "severity": "HIGH",
+    "anomaly_score": 0.94,
+    "description": "Heart rate value exceeds normal range",
+    "recommended_action": "Verify sensor integrity"
+  }
+]
 ```
 
 ### GET /health

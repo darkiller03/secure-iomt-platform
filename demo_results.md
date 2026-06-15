@@ -124,11 +124,11 @@ The large dataset run now reports:
 - False positive rate: `0.0`
 - False negative rate: `0.0`
 
-These results are saved in `metrics_output_large.json`.
+These results are based on legacy large-dataset evaluation artifacts and are not included in the current repository.
 
 ## Command
 Run the main test harness with:
 
 ```bash
-python test_ids.py sample_data_large.json alerts_output_large.json metrics_output_large.json
+python test_ids.py multi_device_dataset.json alerts_output.json metrics_output.json
 ```

@@ -14,9 +14,11 @@ A single message must be a JSON object with these fields:
 {
   "device_id": "HRM001",
   "patient_id": "P001",
-  "device_type": "HeartRateMonitor",
-  "heart_rate": 72,
-  "timestamp": "2026-06-01T10:15:00Z"
+  "device_type": "heart_monitor",
+  "value": 72,
+  "unit": "bpm",
+  "timestamp": "2026-06-01T10:15:00Z",
+  "status": "normal"
 }
 ```
 
@@ -47,8 +49,8 @@ Each alert produced by the IDS matches this structure exactly:
 - `alert_generator.py`: helper to build alert JSON objects.
 - `isolation_forest_model.py`: trains and scores Isolation Forest anomalies.
 - `api.py`: FastAPI application exposing `/detect`, `/alerts`, and `/health`.
-- `sample_data.json`: sample messages used by tests.
-- `test_ids.py`: test runner; reads `sample_data.json`, sends messages to IDS, writes `alerts_output.json`.
+- `multi_device_dataset.json`: mixed sample messages used by tests for the four supported device types.
+- `test_ids.py`: test runner; reads `multi_device_dataset.json`, sends messages to IDS, writes `alerts_output.json`.
 - `alerts_output.json`: output file where alerts are saved (created/overwritten by tests).
 - `requirements.txt`: Python dependencies.
 
@@ -63,7 +65,7 @@ pip install -r requirements.txt
 python test_ids.py
 ```
 
-After running, `alerts_output.json` will contain all generated alerts. Normal messages only print `NORMAL`.
+After running, `alerts_output.json` will contain all generated alerts from the multi-device dataset. Normal messages only print `NORMAL`.
 
 **Next steps**
 - Integrate the IDS with the Gateway (MQTT or REST) by replacing the local file input with a networked input function.
@@ -72,7 +74,7 @@ After running, `alerts_output.json` will contain all generated alerts. Normal me
 
 **Docker**
 
-This project can be run inside Docker as a self-contained service. The container runs `python test_ids.py` by default to exercise the IDS locally using `sample_data.json`.
+This project can be run inside Docker as a self-contained service. The container runs `python test_ids.py` by default to exercise the IDS locally using `multi_device_dataset.json`.
 
 Build the image:
 
@@ -114,9 +116,11 @@ curl -X POST http://localhost:8000/detect \
   -d '{
     "device_id": "HRM001",
     "patient_id": "P001",
-    "device_type": "HeartRateMonitor",
-    "heart_rate": 250,
-    "timestamp": "2026-06-01T10:15:00Z"
+    "device_type": "heart_monitor",
+    "value": 250,
+    "unit": "bpm",
+    "timestamp": "2026-06-01T10:15:00Z",
+    "status": "alert"
   }'
 ```
 

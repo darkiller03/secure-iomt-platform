@@ -1,0 +1,1002 @@
+[
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 36.2,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:00:00.227898Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 26.5,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:00:00.000572Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 129.2,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:00:00.025011Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 95.7,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:00:00.897823Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.4,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:00:10.079792Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 16.6,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:00:10.019477Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 94.2,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:00:10.219321Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 79.0,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:00:10.223211Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 142.6,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:00:20.676699Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.2,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:00:20.101001Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 99.0,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:00:20.509526Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 45.6,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:00:20.878722Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 91.7,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:00:30.047116Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.4,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:00:30.635684Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 164.1,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:00:30.086939Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 40.9,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:00:30.307514Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.8,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:00:40.370181Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 99.2,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:00:40.029797Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 91.9,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:00:40.627446Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 3.8,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:00:40.878010Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 46.5,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:00:50.085653Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 71.2,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:00:50.505355Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 97.3,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:00:50.422160Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.0,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:00:50.266978Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 24.3,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:01:00.069213Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 40.7,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:01:00.648035Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 44.7,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:01:00.198838Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 91.5,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:01:00.381619Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 39.0,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:01:10.171139Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 37.5,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:01:10.765834Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 130.7,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:01:10.544941Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 99.0,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:01:10.529114Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 71.4,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:01:20.589266Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 7.2,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:01:20.475282Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 98.8,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:01:20.860780Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 39.6,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:01:20.163402Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 27.4,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:01:30.265057Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.9,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:01:30.989523Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 152.7,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:01:30.006499Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 91.1,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:01:30.720722Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 152.2,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:01:40.698139Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 96.5,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:01:40.536970Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 42.9,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:01:40.423138Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 39.2,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:01:40.556950Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 11.2,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:01:50.539296Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 88.0,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:01:50.155479Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 39.4,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:01:50.842852Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 93.1,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:01:50.640962Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 91.9,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:02:00.434765Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 36.0,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:02:00.201151Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 173.1,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:02:00.336595Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 39.9,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:02:00.229048Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 53.8,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:02:10.096716Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 36.2,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:02:10.315453Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 16.0,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:02:10.995149Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 94.6,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:02:10.953816Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.3,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:02:20.210983Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 98.0,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:02:20.263389Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 32.2,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:02:20.438100Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 158.0,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:02:20.603726Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 110,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:02:30.500586Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 60,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:02:30.517576Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 190,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:02:30.807128Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 52,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:02:30.942910Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 80,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:02:40.178652Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 30,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:02:40.729732Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": -10,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:02:40.121004Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 25,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:02:40.876368Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 70,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:02:50.224697Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 120,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:02:50.912628Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 62,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:02:50.314678Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 200,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:02:50.536228Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "THM00X99",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 38.0,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T10:03:00.655439Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "INP00X99",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 29.2,
+    "unit": "IU",
+    "timestamp": "2026-06-15T10:03:00.338086Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "HRM00X99",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 93.2,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T10:03:00.973116Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "OXY00X99",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 93.4,
+    "unit": "%",
+    "timestamp": "2026-06-15T10:03:00.870519Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 40.6,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T11:05:00Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 117.2,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T11:00:00Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 12.0,
+    "unit": "IU",
+    "timestamp": "2026-06-15T11:15:00Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 96.1,
+    "unit": "%",
+    "timestamp": "2026-06-15T11:10:00Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 38.3,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T11:05:00.300000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 95.9,
+    "unit": "%",
+    "timestamp": "2026-06-15T11:10:00.300000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 155.5,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T11:00:00.300000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 11.6,
+    "unit": "IU",
+    "timestamp": "2026-06-15T11:15:00.300000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 126.4,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T11:00:00.600000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 4.4,
+    "unit": "IU",
+    "timestamp": "2026-06-15T11:15:00.600000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.3,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T11:05:00.600000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 92.2,
+    "unit": "%",
+    "timestamp": "2026-06-15T11:10:00.600000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 97.1,
+    "unit": "%",
+    "timestamp": "2026-06-15T11:10:00.900000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.2,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T11:05:00.900000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 159.9,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T11:00:00.900000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 31.3,
+    "unit": "IU",
+    "timestamp": "2026-06-15T11:15:00.900000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 38.8,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T11:05:01.200000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 12.0,
+    "unit": "IU",
+    "timestamp": "2026-06-15T11:15:01.200000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 95.3,
+    "unit": "%",
+    "timestamp": "2026-06-15T11:10:01.200000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 120.7,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T11:00:01.200000Z",
+    "status": "normal",
+    "expected_label": "normal"
+  },
+  {
+    "device_id": "INP001",
+    "patient_id": "P004",
+    "device_type": "insulin_pump",
+    "value": 44.5,
+    "unit": "IU",
+    "timestamp": "2026-06-15T11:15:01.500000Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "THM001",
+    "patient_id": "P002",
+    "device_type": "thermometer",
+    "value": 37.3,
+    "unit": "\u00b0C",
+    "timestamp": "2026-06-15T11:05:01.500000Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P003",
+    "device_type": "oximeter",
+    "value": 97.2,
+    "unit": "%",
+    "timestamp": "2026-06-15T11:10:01.500000Z",
+    "status": "attack",
+    "expected_label": "attack"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 138.2,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T11:00:01.500000Z",
+    "status": "attack",
+    "expected_label": "attack"
+  }
+]

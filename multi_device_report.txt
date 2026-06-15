@@ -1,0 +1,41 @@
+Multi-Device IDS Report
+
+Dataset: multi_device_dataset.json
+- Total messages: 100
+- Device types: 25 Heart Monitor, 25 Thermometer, 25 Oximeter, 25 Insulin Pump
+- Attack coverage:
+  - Data Injection attacks: 12 total (3 per device type)
+  - Device Spoofing attacks: 4 total (1 per device type)
+  - DoS attacks: 4 total (one 6-message burst per device type, alert on the 6th message)
+- Normal messages: 80
+
+IDS Support Added:
+- Heart Monitor: unit=bpm, normal range 40-180
+- Thermometer: unit=°C, normal range 35-42
+- Oximeter: unit=%, normal range 90-100
+- Insulin Pump: unit=IU, normal range 0-50
+- Device Spoofing detection unchanged
+- DoS detection unchanged
+- Isolation Forest models trained separately for each device type
+
+Detection results from running test_ids.py on multi_device_dataset.json:
+- Total messages: 100
+- True Positives: 20
+- True Negatives: 80
+- False Positives: 0
+- False Negatives: 0
+- Precision: 1.0
+- Recall: 1.0
+- Accuracy: 1.0
+- False positive rate: 0.0
+- False negative rate: 0.0
+
+Generated artifacts:
+- alerts_output.json
+- metrics_output.json
+- alert_payload.json
+
+Notes:
+- `test_ids.py` now defaults to `multi_device_dataset.json`.
+- `test_alert_interface.py` validates alert schema against `multi_device_dataset.json`.
+- `test_gateway_compatibility.py` verifies the IDS on `multi_device_dataset.json` with no errors.

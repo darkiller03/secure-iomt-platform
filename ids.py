@@ -1,8 +1,8 @@
+import json
 import re
 import time
 from collections import deque, defaultdict
-from datetime import datetime, timezone
-import json
+from datetime import datetime
 from isolation_forest_model import IsolationForestModel
 from alert_generator import create_alert
 
@@ -11,9 +11,38 @@ from alert_generator import create_alert
 
 
 class IDS:
+    DEVICE_CONFIG = {
+        "heart_monitor": {
+            "unit": "bpm",
+            "min": 40,
+            "max": 180,
+            "label": "Heart rate",
+        },
+        "thermometer": {
+            "unit": "°C",
+            "min": 35,
+            "max": 42,
+            "label": "Temperature",
+        },
+        "oximeter": {
+            "unit": "%",
+            "min": 90,
+            "max": 100,
+            "label": "SpO2",
+        },
+        "insulin_pump": {
+            "unit": "IU",
+            "min": 0,
+            "max": 50,
+            "label": "Insulin delivery",
+        },
+    }
+
+    SUPPORTED_DEVICE_TYPES = set(DEVICE_CONFIG.keys())
+
     def __init__(self, known_devices=None, dos_threshold=5, dos_window=2.0):
         # Known devices list
-        self.known_devices = set(known_devices or ["HRM001", "THM001", "OXY001"])
+        self.known_devices = set(known_devices or ["HRM001", "THM001", "OXY001", "INP001"])
 
         # DoS detection: keep timestamp deque per device
         # If more than dos_threshold messages arrive within dos_window seconds -> DoS
@@ -22,10 +51,10 @@ class IDS:
         self.msg_times = defaultdict(deque)
         self.dos_alerted = defaultdict(bool)
 
-        # Isolation Forest model for anomaly detection on heart_rate
+        # Isolation Forest model for anomaly detection; one model per supported device type
         self.if_model = IsolationForestModel()
         self.if_model.train()
-        self.if_threshold = 0.55
+        self.if_threshold = 0.95
 
         # Counter for alerts to make readable alert IDs
         self.alert_counter = 0
@@ -43,15 +72,71 @@ class IDS:
                 pass
         return time.time()
 
+    def _build_alert(self, alert_type, device_id, severity, anomaly_score, description, recommended_action, timestamp):
+        return create_alert(
+            alert_id=self._next_alert_id(),
+            timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(timestamp)),
+            device_id=device_id,
+            alert_type=alert_type,
+            severity=severity,
+            anomaly_score=anomaly_score,
+            description=description,
+            recommended_action=recommended_action,
+        )
+
+    def _extract_measurement(self, device_type, unit, value):
+        if device_type not in self.SUPPORTED_DEVICE_TYPES:
+            return None, "Unsupported device_type"
+
+        expected_unit = self.DEVICE_CONFIG[device_type]["unit"]
+        if unit != expected_unit:
+            return None, f"Unsupported unit: {unit!r}; expected {expected_unit}"
+
+        if value is None:
+            return None, "Missing value field for measurement"
+
+        if isinstance(value, str):
+            try:
+                value = float(value)
+            except ValueError:
+                return None, "Invalid numeric value for measurement"
+
+        if not isinstance(value, (int, float)):
+            return None, "Invalid numeric value for measurement"
+
+        return float(value), ""
+
     def detect(self, data):
         """Run detection rules and return an alert dict or None."""
         ts = time.time()
         event_ts = self._get_event_time(data)
         device_id = data.get("device_id")
         patient_id = data.get("patient_id")
-        heart_rate = data.get("heart_rate")
+        unit = data.get("unit")
+        value = data.get("value")
+        device_type = data.get("device_type")
 
-        # 1) Device Spoofing detection
+        measurement, error = self._extract_measurement(device_type, unit, value)
+        if measurement is None:
+            if device_type not in self.SUPPORTED_DEVICE_TYPES:
+                description = f"Unsupported device_type: {device_type!r}; expected one of {sorted(self.SUPPORTED_DEVICE_TYPES)}"
+            else:
+                description = error
+            return self._build_alert(
+                alert_type="Data Injection",
+                device_id=device_id,
+                severity="MEDIUM",
+                anomaly_score=1.0,
+                description=description,
+                recommended_action="Send Gateway payload with a supported device_type, correct unit, and numeric value",
+                timestamp=ts,
+            )
+
+        device_info = self.DEVICE_CONFIG[device_type]
+        normal_min = device_info["min"]
+        normal_max = device_info["max"]
+        label = device_info["label"]
+
         if device_id not in self.known_devices:
             return self._build_alert(
                 alert_type="Device Spoofing",
@@ -85,7 +170,6 @@ class IDS:
                     timestamp=ts,
                 )
 
-        # 2) DoS detection: record timestamp and check frequency
         dq = self.msg_times[device_id]
         dq.append(event_ts)
         while dq and (event_ts - dq[0] > self.dos_window):
@@ -104,55 +188,22 @@ class IDS:
         else:
             self.dos_alerted[device_id] = False
 
-        # 3) Data Injection detection via simple rules
-        if heart_rate is None:
-            return self._build_alert(
-                alert_type="Data Injection",
-                device_id=device_id,
-                severity="MEDIUM",
-                anomaly_score=1.0,
-                description="Missing heart rate value",
-                recommended_action="Check device sensor and data integrity",
-                timestamp=ts,
-            )
-
-        if heart_rate < 40 or heart_rate > 180:
+        if measurement < normal_min or measurement > normal_max:
             return self._build_alert(
                 alert_type="Data Injection",
                 device_id=device_id,
                 severity="HIGH",
                 anomaly_score=1.0,
-                description="Heart rate value outside acceptable range",
+                description=f"{label} measurement outside acceptable range",
                 recommended_action="Verify sensor integrity",
                 timestamp=ts,
             )
 
-        # 4) Isolation Forest anomaly detection
-        score = self.if_model.score(heart_rate)
-        if score > self.if_threshold:
-            return self._build_alert(
-                alert_type="Anomaly",
-                device_id=device_id,
-                severity="MEDIUM",
-                anomaly_score=round(score, 2),
-                description="Isolation Forest detected anomalous heart rate",
-                recommended_action="Inspect device readings and patient status",
-                timestamp=ts,
-            )
-
+        # Strict normal-range policy: if the measurement is inside the known safe range,
+        # do not use Isolation Forest as the primary decision mechanism.
+        # Isolation Forest remains available for monitoring, but it cannot override
+        # clear rule-based normal values.
         return None
-
-    def _build_alert(self, alert_type, device_id, severity, anomaly_score, description, recommended_action, timestamp):
-        return create_alert(
-            alert_id=self._next_alert_id(),
-            timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(timestamp)),
-            device_id=device_id,
-            alert_type=alert_type,
-            severity=severity,
-            anomaly_score=anomaly_score,
-            description=description,
-            recommended_action=recommended_action,
-        )
 
     def process_message(self, data):
         """Process a message and print the result. Useful for local testing."""
@@ -165,13 +216,14 @@ class IDS:
 
 
 if __name__ == "__main__":
-    # Simple demo when running directly
     demo = IDS()
     sample = {
         "device_id": "HRM001",
         "patient_id": "P001",
-        "device_type": "HeartRateMonitor",
-        "heart_rate": 72,
+        "device_type": "heart_monitor",
+        "value": 72,
+        "unit": "bpm",
         "timestamp": "2026-06-01T10:15:00Z",
+        "status": "normal",
     }
     demo.process_message(sample)

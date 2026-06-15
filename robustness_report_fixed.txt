@@ -1,0 +1,24 @@
+Robustness Audit Report (Fixed)
+===============================
+
+Dataset: robustness_dataset.json
+Total messages: 200
+Normal messages: 173
+Attack messages: 27
+
+Metrics:
+- detection_precision: 1.0
+- detection_recall: 1.0
+- false_positive_rate: 0.0
+- false_negative_rate: 0.0
+- accuracy: 1.0
+- true_positives: 27
+- true_negatives: 173
+- false_positives: 0
+- false_negatives: 0
+
+False positives:
+  - none
+
+False negatives:
+  - none

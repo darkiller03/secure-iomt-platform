@@ -1,0 +1,203 @@
+secure-iomt-platform - Full Code Overview
+
+This file provides a current end-to-end overview of the repository, including architecture, IDS design, dataset flow, test harnesses, and current evaluation status.
+
+1. Project Purpose
+------------------
+This repository implements an IDS prototype for IoMT (Internet of Medical Things) device telemetry. It is designed to accept gateway-compatible JSON device messages, apply strict rule-based and behavior-based detection, and output normalized alert objects for downstream handling.
+
+2. Architecture and Key Components
+----------------------------------
+The repository is organized around the following primary components:
+
+- `ids.py`: core IDS engine and detection workflow.
+- `alert_generator.py`: constructs normalized alert JSON objects.
+- `isolation_forest_model.py`: trains per-device anomaly scoring models.
+- `api.py`: FastAPI service exposing detection endpoints.
+- `test_ids.py`: dataset-driven IDS evaluation harness.
+- `test_alert_interface.py`: alert schema validation.
+- `test_gateway_compatibility.py`: gateway payload compatibility checks.
+- `generate_robustness_dataset.py`: builds the robustness dataset with safe timing.
+- `multi_device_dataset.json`: mixed-device baseline test dataset.
+- `robustness_dataset.json`: fixed 200-message robustness dataset.
+- `alerts_output_robustness_fixed.json`: alerts generated from the robustness run.
+- `metrics_output_robustness_fixed.json`: fixed robustness evaluation metrics.
+- `robustness_report_fixed.txt`: summary report for the fixed robustness run.
+
+3. Data Flow
+-------------
+The current IDS flow is:
+
+1. Input messages are loaded from a dataset file such as `multi_device_dataset.json` or `robustness_dataset.json`.
+2. Each message is sent to `IDS.detect()` or via `POST /detect`.
+3. The IDS validates payload fields, checks device spoofing, detects DoS, and applies strict range logic.
+4. If a message violates a rule or is outside the safe range, the IDS returns an alert object.
+5. Normal messages return `None` and are recorded as normal.
+6. Alerts and predictions are written to output files and evaluated for metrics.
+
+4. Supported Device Types
+-------------------------
+The IDS supports four medical device types with device-specific units and normal ranges:
+
+- `heart_monitor`
+  - unit: `bpm`
+  - normal range: `40-180`
+  - label: Heart rate
+
+- `thermometer`
+  - unit: `°C`
+  - normal range: `35.0-42.0`
+  - label: Temperature
+
+- `oximeter`
+  - unit: `%`
+  - normal range: `90-100`
+  - label: SpO2
+
+- `insulin_pump`
+  - unit: `IU`
+  - normal range: `0-50`
+  - label: Insulin delivery
+
+5. ids.py (Core IDS Logic)
+---------------------------
+`ids.py` contains the `IDS` class and the main detection workflow.
+
+Updated behavior:
+- Strict normal-range detection: values inside the configured safe range are treated as normal.
+- Isolation Forest no longer overrides clear normal values.
+- Values outside range generate `Data Injection` alerts.
+- DoS detection triggers only if more than 5 messages from the same device arrive within 2 seconds.
+- Device spoofing triggers only for unknown device IDs or malicious `patient_id` patterns.
+- Known-safe normal values such as `heart_monitor=40`, `heart_monitor=180`, `thermometer=35.0`, `thermometer=42.0`, `oximeter=90`, `oximeter=100`, `insulin_pump=0`, and `insulin_pump=50` remain normal.
+
+Detection sequence in `IDS.detect()`:
+1. Validate device type, unit, and numeric measurement.
+2. Reject unsupported device types or invalid payloads as `Data Injection`.
+3. Reject unknown `device_id` values as `Device Spoofing`.
+4. Reject suspicious `patient_id` patterns as spoofing or injection.
+5. Detect DoS behavior using a sliding window per device.
+6. If the measurement is outside the safe range, generate a `Data Injection` alert.
+7. Otherwise, return `None` for normal messages.
+
+6. alert_generator.py (Alert Schema)
+------------------------------------
+This module builds alert dictionaries with a fixed schema.
+
+Every alert contains:
+- `alert_id`
+- `timestamp`
+- `device_id`
+- `alert_type`
+- `severity`
+- `anomaly_score`
+- `description`
+- `recommended_action`
+
+This ensures consistent downstream processing.
+
+7. isolation_forest_model.py
+----------------------------
+This module trains per-device Isolation Forest models for anomaly scoring.
+
+Models are trained on synthetic normal data for each device type. The module provides an anomaly score in the range `[0.0, 1.0]`.
+
+Note: the current IDS policy uses Isolation Forest only as auxiliary information and does not generate alerts for values that are within the strict normal range.
+
+8. api.py (FastAPI Service)
+---------------------------
+The FastAPI app exposes these endpoints:
+
+- `POST /detect`
+  - Accepts one device message.
+  - Returns `status: NORMAL` with `alert: null` for normal messages.
+  - Returns `status: ALERT` with the alert object for alerts.
+
+- `GET /alerts`
+  - Returns alerts generated since startup.
+
+- `GET /health`
+  - Returns the service health status.
+
+9. Test and Evaluation Files
+----------------------------
+The test suite validates IDS behavior and metrics.
+
+- `test_ids.py`
+  - Evaluates the IDS against a dataset.
+  - Writes alerts, predictions, and metric outputs.
+
+- `test_alert_interface.py`
+  - Verifies alert schema generation for all dataset messages.
+
+- `test_gateway_compatibility.py`
+  - Confirms gateway-compatible payload handling and alert generation.
+
+- `evaluation.py`
+  - Computes TP, TN, FP, FN and derived metrics.
+
+- `generate_robustness_dataset.py`
+  - Regenerates a robust, 200-message dataset with safe timing.
+
+10. Dataset and Output Files
+-----------------------------
+- `multi_device_dataset.json`
+  - Baseline mixed-device dataset for normal and attack cases.
+
+- `robustness_dataset.json`
+  - 200-message robustness dataset with controlled timing to avoid accidental DoS false positives.
+
+- `alerts_output_robustness_fixed.json`
+  - Alerts generated from the fixed robustness run.
+
+- `metrics_output_robustness_fixed.json`
+  - Fixed robustness evaluation metrics.
+
+- `robustness_report_fixed.txt`
+  - Summary report for the fixed robustness evaluation.
+
+11. Current Status and Results
+------------------------------
+The current code supports the four specified IoMT device types and implements stricter rule-based normal-range detection.
+
+The fixed robustness evaluation now shows:
+- `detection_precision`: `1.0`
+- `detection_recall`: `1.0`
+- `false_positive_rate`: `0.0`
+- `false_negative_rate`: `0.0`
+- `accuracy`: `1.0`
+
+This indicates the corrected dataset and IDS policy now detect all attack messages while preserving all clear normal values.
+
+12. Important Notes
+-------------------
+- DoS detection is only triggered by true message-rate bursts from the same device within 2 seconds.
+- Normal values at the exact range boundaries remain normal.
+- Device spoofing is only based on unknown `device_id` or malicious patterns, not on ordinary `patient_id` values.
+- The current implementation preserves gateway-compatible JSON payload handling.
+
+13. Recommended Entry Points
+-----------------------------
+For a quick review, start with:
+- `ids.py`
+- `generate_robustness_dataset.py`
+- `test_ids.py`
+- `evaluation.py`
+- `robustness_report_fixed.txt`
+
+14. How to run
+---------------
+Local evaluation:
+```powershell
+python test_ids.py
+```
+
+For robustness validation:
+```powershell
+python generate_robustness_dataset.py
+python test_ids.py robustness_dataset.json alerts_output_robustness_fixed.json metrics_output_robustness_fixed.json
+```
+
+15. Summary
+------------
+`secure-iomt-platform` is an IDS prototype for IoMT telemetry with strict device range rules, spoofing detection, DoS protection, and dataset-driven evaluation. The current repository is aligned with gateway JSON compatibility and includes a robust test harness for both baseline and boundary-case datasets.

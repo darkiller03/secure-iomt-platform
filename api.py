@@ -27,7 +27,7 @@ def detect(message: Dict[str, Any]):
 @app.get("/alerts")
 def get_alerts():
     """Return alerts generated since the service started."""
-    return {"alerts": alerts}
+    return alerts
 
 
 @app.get("/health")

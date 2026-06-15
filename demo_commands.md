@@ -6,7 +6,7 @@
 python test_ids.py
 ```
 
-This runs the local JSON-based test harness, reads `sample_data.json`, prints `NORMAL` or alerts, saves `alerts_output.json`, and generates `metrics_output.json`.
+This runs the local JSON-based test harness, reads `multi_device_dataset.json`, prints `NORMAL` or alerts, saves `alerts_output.json`, and generates `metrics_output.json`.
 
 ## Run with Docker
 
@@ -34,8 +34,10 @@ curl -X POST http://localhost:8000/detect \
   -d '{
     "device_id": "HRM001",
     "patient_id": "P001",
-    "device_type": "HeartRateMonitor",
-    "heart_rate": 250,
+    "device_type": "heart_monitor",
+    "value": 250,
+    "unit": "bpm",
+    "status": "normal",
     "timestamp": "2026-06-01T10:15:00Z"
   }'
 ```
