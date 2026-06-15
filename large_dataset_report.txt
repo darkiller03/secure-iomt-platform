@@ -1,0 +1,18 @@
+Large dataset IDS report
+========================
+Total messages tested: 160
+True Positives (TP): 60
+True Negatives (TN): 100
+False Positives (FP): 0
+False Negatives (FN): 0
+Precision: 1.0000
+Recall: 1.0000
+Accuracy: 1.0000
+False Positive Rate: 0.0000
+False Negative Rate: 0.0000
+
+Confusion matrix:
+  attack/attack: 60
+  attack/normal: 0
+  normal/attack: 0
+  normal/normal: 100

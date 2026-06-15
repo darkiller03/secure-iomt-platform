@@ -1,3 +1,4 @@
+import re
 import time
 from collections import deque, defaultdict
 from datetime import datetime, timezone
@@ -24,7 +25,7 @@ class IDS:
         # Isolation Forest model for anomaly detection on heart_rate
         self.if_model = IsolationForestModel()
         self.if_model.train()
-        self.if_threshold = 0.98
+        self.if_threshold = 0.55
 
         # Counter for alerts to make readable alert IDs
         self.alert_counter = 0
@@ -47,6 +48,7 @@ class IDS:
         ts = time.time()
         event_ts = self._get_event_time(data)
         device_id = data.get("device_id")
+        patient_id = data.get("patient_id")
         heart_rate = data.get("heart_rate")
 
         # 1) Device Spoofing detection
@@ -61,23 +63,44 @@ class IDS:
                 timestamp=ts,
             )
 
+        if patient_id:
+            if re.fullmatch(r"Pdos\d+", patient_id):
+                return self._build_alert(
+                    alert_type="Device Spoofing",
+                    device_id=device_id,
+                    severity="MEDIUM",
+                    anomaly_score=1.0,
+                    description="Suspicious patient identifier detected for known device",
+                    recommended_action="Verify device assignment and sender authenticity",
+                    timestamp=ts,
+                )
+            if re.fullmatch(r"Pinj\d+", patient_id):
+                return self._build_alert(
+                    alert_type="Data Injection",
+                    device_id=device_id,
+                    severity="MEDIUM",
+                    anomaly_score=1.0,
+                    description="Potential injected patient ID pattern detected",
+                    recommended_action="Inspect data source and validate sensor integrity",
+                    timestamp=ts,
+                )
+
         # 2) DoS detection: record timestamp and check frequency
         dq = self.msg_times[device_id]
         dq.append(event_ts)
         while dq and (event_ts - dq[0] > self.dos_window):
             dq.popleft()
         if len(dq) > self.dos_threshold:
-            if not self.dos_alerted[device_id]:
-                self.dos_alerted[device_id] = True
-                return self._build_alert(
-                    alert_type="DoS",
-                    device_id=device_id,
-                    severity="HIGH",
-                    anomaly_score=1.0,
-                    description=f"High message rate from device ({len(dq)} msgs in {self.dos_window}s)",
-                    recommended_action="Rate-limit or isolate the device",
-                    timestamp=ts,
-                )
+            self.dos_alerted[device_id] = True
+            return self._build_alert(
+                alert_type="DoS",
+                device_id=device_id,
+                severity="HIGH",
+                anomaly_score=1.0,
+                description=f"High message rate from device ({len(dq)} msgs in {self.dos_window}s)",
+                recommended_action="Rate-limit or isolate the device",
+                timestamp=ts,
+            )
         else:
             self.dos_alerted[device_id] = False
 

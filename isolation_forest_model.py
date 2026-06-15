@@ -45,7 +45,7 @@ class IsolationForestModel:
         df = self.model.decision_function(x)[0]
         # Convert to 0..1 anomaly score: map df (approx -0.5..0.5) to 0..1
         # We'll use a simple logistic-like scaling
-        score = 1.0 / (1.0 + _np.exp(5 * df))
+        score = 1.0 / (1.0 + _np.exp(20 * df))
         # clamp
         score = float(max(0.0, min(1.0, score)))
         return score
