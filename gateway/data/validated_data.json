@@ -1,0 +1,254 @@
+[
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 98,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:47:42.485543",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 75,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:47:47.485739",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 82,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:47:55.418211",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 91,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:00.418473",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 77,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:05.418890",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 85,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:10.419237",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 60,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:15.419482",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 82,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:20.419877",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 93,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:25.420261",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 83,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:33.351260",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 69,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:38.351703",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 74,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:43.351972",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 80,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:48.352242",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 66,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:53.352781",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 79,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:48:58.353054",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 82,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:06.284390",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 78,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:11.284782",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 90,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:16.285101",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 90,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:21.285345",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 62,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:26.285678",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 94,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:31.286000",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 74,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:39.216450",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 100,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:44.216735",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 73,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:49.217032",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 89,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:54.217285",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 88,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:49:59.217515",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 85,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:50:04.217965",
+    "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 62,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T16:50:09.218288",
+    "status": "normal"
+  }
+]
