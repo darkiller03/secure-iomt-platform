@@ -430,5 +430,191 @@
     "source": "Gateway",
     "level": "INFO",
     "message": "Gateway connected to MQTT broker"
+  },
+  {
+    "timestamp": "2026-06-16T15:54:54",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:54:57",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from INS001 (insulin_pump)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:00",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from TMP001 (smart_thermometer)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:01",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from INS001 (insulin_pump)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:03",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from TMP001 (smart_thermometer)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:04",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:06",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:07",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:09",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:10",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:12",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:13",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:15",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from INS001 (insulin_pump)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:16",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:21",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from TMP001 (smart_thermometer)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:22",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from TMP001 (smart_thermometer)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:24",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from TMP001 (smart_thermometer)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:25",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:27",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:28",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:30",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from INS001 (insulin_pump)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:31",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:33",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:34",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:36",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:37",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:39",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:40",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:42",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:43",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from OXY001 (oximeter)"
+  },
+  {
+    "timestamp": "2026-06-16T15:55:45",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received from HRM001 (heart_monitor)"
   }
 ]
