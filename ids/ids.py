@@ -18,7 +18,7 @@ class IDS:
             "max": 180,
             "label": "Heart rate",
         },
-        "thermometer": {
+        "smart_thermometer": {
             "unit": "°C",
             "min": 35,
             "max": 42,
@@ -31,7 +31,7 @@ class IDS:
             "label": "SpO2",
         },
         "insulin_pump": {
-            "unit": "IU",
+            "unit": "u/h",
             "min": 0,
             "max": 50,
             "label": "Insulin delivery",
@@ -42,7 +42,7 @@ class IDS:
 
     def __init__(self, known_devices=None, dos_threshold=5, dos_window=2.0):
         # Known devices list
-        self.known_devices = set(known_devices or ["HRM001", "THM001", "OXY001", "INP001"])
+        self.known_devices = set(known_devices or ["HRM001", "TMP001", "OXY001", "INS001"])
 
         # DoS detection: keep timestamp deque per device
         # If more than dos_threshold messages arrive within dos_window seconds -> DoS
