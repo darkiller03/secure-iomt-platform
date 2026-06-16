@@ -424,5 +424,11 @@
     "source": "Gateway",
     "level": "INFO",
     "message": "Valid message received from TMP001 (smart_thermometer)"
+  },
+  {
+    "timestamp": "2026-06-16T15:53:19",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Gateway connected to MQTT broker"
   }
 ]
