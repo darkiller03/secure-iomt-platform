@@ -628,5 +628,11 @@
     "source": "Gateway",
     "level": "INFO",
     "message": "Gateway connected to MQTT broker"
+  },
+  {
+    "timestamp": "2026-06-16T14:57:55",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Gateway connected to MQTT broker"
   }
 ]
