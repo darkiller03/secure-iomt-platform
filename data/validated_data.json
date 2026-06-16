@@ -1,0 +1,18 @@
+[
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 72,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T14:00:00"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 72,
+    "unit": "bpm",
+    "timestamp": "2026-06-15T14:00:00"
+  }
+]
