@@ -1,5 +1,2 @@
-scikit-learn
+﻿scikit-learn
 numpy
-fastapi
-uvicorn
-
