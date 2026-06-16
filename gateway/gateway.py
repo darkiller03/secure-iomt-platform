@@ -1,10 +1,11 @@
+import os
 import json
 from datetime import datetime
 from pathlib import Path
 
 import paho.mqtt.client as mqtt
 
-BROKER_HOST = "localhost"
+BROKER_HOST = os.getenv("BROKER_HOST", "localhost")
 BROKER_PORT = 1883
 TOPIC = "iomt/devices"
 

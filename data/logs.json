@@ -616,5 +616,17 @@
     "source": "Gateway",
     "level": "INFO",
     "message": "Valid message received from HRM001 (heart_monitor)"
+  },
+  {
+    "timestamp": "2026-06-16T14:38:16",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Gateway connected to MQTT broker"
+  },
+  {
+    "timestamp": "2026-06-16T14:42:53",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Gateway connected to MQTT broker"
   }
 ]

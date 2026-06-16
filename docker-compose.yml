@@ -1,0 +1,40 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: secureiomt-mosquitto
+    ports:
+      - "1883:1883"
+
+  gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    container_name: secureiomt-gateway
+    environment:
+      - BROKER_HOST=secureiomt-mosquitto
+    depends_on:
+      - mosquitto
+    volumes:
+      - ./data:/app/data
+
+  ids:
+    build:
+      context: .
+      dockerfile: ids/Dockerfile
+    container_name: secureiomt-ids
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - gateway
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: dashboard/Dockerfile
+    container_name: secureiomt-dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - ids
