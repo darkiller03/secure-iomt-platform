@@ -1,0 +1,266 @@
+{
+  "dataset_info": {
+    "description": "Representative IoMT dataset with mixed normal traffic, attacks, and anomalies for LLM multi-event correlation analysis",
+    "timestamp": "2026-06-15T11:16:00Z",
+    "total_messages": 12,
+    "total_alerts": 6
+  },
+  "raw_mqtt_messages": [
+    {
+      "message_id": "msg_001",
+      "device_id": "HRM001",
+      "patient_id": "P001",
+      "device_type": "heart_monitor",
+      "value": 75,
+      "unit": "bpm",
+      "timestamp": "2026-06-15T11:00:00Z",
+      "status": "normal"
+    },
+    {
+      "device_id": "THM001",
+      "patient_id": "P002",
+      "device_type": "thermometer",
+      "value": 37.5,
+      "unit": "°C",
+      "timestamp": "2026-06-15T11:00:05Z",
+      "status": "normal"
+    },
+    {
+      "device_id": "INP001",
+      "patient_id": "P004",
+      "device_type": "insulin_pump",
+      "value": 24,
+      "unit": "IU",
+      "timestamp": "2026-06-15T11:00:10Z",
+      "status": "normal"
+    },
+    {
+      "message_id": "msg_004",
+      "device_id": "OXY001",
+      "patient_id": "P003",
+      "device_type": "oximeter",
+      "value": 97,
+      "unit": "%",
+      "timestamp": "2026-06-15T11:00:15Z",
+      "status": "normal"
+    },
+    {
+      "message_id": "msg_005",
+      "device_id": "HRM001",
+      "patient_id": "P001",
+      "device_type": "heart_monitor",
+      "value": 155,
+      "unit": "bpm",
+      "timestamp": "2026-06-15T11:00:20Z",
+      "status": "attack",
+      "attack_type": "data_injection"
+    },
+    {
+      "message_id": "msg_006",
+      "device_id": "OXY001",
+      "patient_id": "P003",
+      "device_type": "oximeter",
+      "value": 97,
+      "unit": "%",
+      "timestamp": "2026-06-15T11:00:25Z",
+      "status": "attack",
+      "attack_type": "replay_attack",
+      "note": "Duplicate of msg_004"
+    },
+    {
+      "message_id": "msg_007",
+      "device_id": "HRM001",
+      "patient_id": "P999",
+      "device_type": "heart_monitor",
+      "value": 82,
+      "unit": "bpm",
+      "timestamp": "2026-06-15T11:00:30Z",
+      "status": "attack",
+      "attack_type": "patient_id_change"
+    },
+    {
+      "message_id": "msg_008",
+      "device_id": "INP001",
+      "patient_id": "P004",
+      "device_type": "insulin_pump",
+      "value": 50,
+      "unit": "IU",
+      "timestamp": "2026-06-15T11:00:35Z",
+      "status": "attack",
+      "attack_type": "programming_change"
+    },
+    {
+      "message_id": "msg_009",
+      "device_id": "HRM001",
+      "patient_id": "P001",
+      "device_type": "heart_monitor",
+      "value": 78,
+      "unit": "bpm",
+      "timestamp": "2026-06-15T11:00:40Z",
+      "status": "normal"
+    },
+    {
+      "message_id": "msg_010",
+      "device_id": "THM001",
+      "patient_id": "P002",
+      "device_type": "thermometer",
+      "value": 38.2,
+      "unit": "°C",
+      "timestamp": "2026-06-15T11:00:45Z",
+      "status": "normal"
+    },
+    {
+      "message_id": "msg_011",
+      "device_id": "OXY001",
+      "patient_id": "P003",
+      "device_type": "oximeter",
+      "value": 95,
+      "unit": "%",
+      "timestamp": "2026-06-15T11:00:50Z",
+      "status": "normal"
+    },
+    {
+      "message_id": "msg_012",
+      "device_id": "INP001",
+      "patient_id": "P004",
+      "device_type": "insulin_pump",
+      "value": 18,
+      "unit": "IU",
+      "timestamp": "2026-06-15T11:00:55Z",
+      "status": "normal"
+    }
+  ],
+  "algorithm_outputs": [
+    {
+      "message_id": "msg_001",
+      "device_id": "HRM001",
+      "value": 75,
+      "device_type": "heart_monitor",
+      "rule_based_decision": "NORMAL",
+      "z_score": 0.625,
+      "z_score_flag": false,
+      "isolation_forest_score": 0.32,
+      "final_decision": "NORMAL"
+    },
+    {
+      "message_id": "msg_005",
+      "device_id": "HRM001",
+      "value": 155,
+      "device_type": "heart_monitor",
+      "rule_based_decision": "ALERT",
+      "rule_reason": "Heart rate outside acceptable range (40-180 bpm boundary case; at 155 is within but elevated)",
+      "z_score": 9.375,
+      "z_score_flag": true,
+      "isolation_forest_score": 0.91,
+      "final_decision": "ALERT (Data Injection)"
+    },
+    {
+      "message_id": "msg_006",
+      "device_id": "OXY001",
+      "value": 97,
+      "device_type": "oximeter",
+      "rule_based_decision": "NORMAL",
+      "z_score": 0.5,
+      "z_score_flag": false,
+      "isolation_forest_score": 0.45,
+      "replay_fingerprint": "OXY001|P003|oximeter|97|%|2026-06-15T11:00:15Z",
+      "duplicate_detected": true,
+      "final_decision": "ALERT (Replay Attack)"
+    },
+    {
+      "message_id": "msg_007",
+      "device_id": "HRM001",
+      "value": 82,
+      "device_type": "heart_monitor",
+      "rule_based_decision": "NORMAL",
+      "z_score": 0.25,
+      "z_score_flag": false,
+      "isolation_forest_score": 0.38,
+      "patient_id_change_detected": true,
+      "previous_patient_id": "P001",
+      "current_patient_id": "P999",
+      "final_decision": "ALERT (Patient ID Change)"
+    },
+    {
+      "message_id": "msg_008",
+      "device_id": "INP001",
+      "value": 50,
+      "device_type": "insulin_pump",
+      "rule_based_decision": "NORMAL",
+      "z_score": 5.0,
+      "z_score_flag": true,
+      "isolation_forest_score": 0.85,
+      "sliding_window_history": [24, 28, 22, 26],
+      "sliding_window_average": 25,
+      "programming_change_detected": true,
+      "alert_reason": "value (50) > avg (25) * 2 and value > 20",
+      "final_decision": "ALERT (Programming Change Suspected)"
+    },
+    {
+      "message_id": "msg_009",
+      "device_id": "HRM001",
+      "value": 78,
+      "device_type": "heart_monitor",
+      "rule_based_decision": "NORMAL",
+      "z_score": 0.25,
+      "z_score_flag": false,
+      "isolation_forest_score": 0.34,
+      "final_decision": "NORMAL"
+    }
+  ],
+  "generated_alerts": [
+    {
+      "alert_id": "ALT-0001",
+      "type": "Data Injection",
+      "device": "HRM001",
+      "severity": "High",
+      "timestamp": "2026-06-17T14:40:00Z",
+      "description": "Heart rate measurement outside acceptable range",
+      "recommended_action": "Verify sensor integrity",
+      "source_message_id": "msg_005"
+    },
+    {
+      "alert_id": "ALT-0002",
+      "type": "Replay Attack",
+      "device": "OXY001",
+      "severity": "High",
+      "timestamp": "2026-06-17T14:40:00Z",
+      "description": "Repeated identical message detected for device OXY001",
+      "recommended_action": "Verify message freshness and communication integrity",
+      "source_message_id": "msg_006"
+    },
+    {
+      "alert_id": "ALT-0003",
+      "type": "Patient ID Change",
+      "device": "HRM001",
+      "severity": "High",
+      "timestamp": "2026-06-17T14:40:00Z",
+      "description": "Device HRM001 changed patient_id from P001 to P999",
+      "recommended_action": "Verify device assignment and patient identity",
+      "source_message_id": "msg_007"
+    },
+    {
+      "alert_id": "ALT-0004",
+      "type": "Programming Change Suspected",
+      "device": "INP001",
+      "severity": "High",
+      "timestamp": "2026-06-17T14:40:00Z",
+      "description": "Sudden increase in insulin delivery without contextual justification",
+      "recommended_action": "Verify insulin pump programming and patient condition",
+      "source_message_id": "msg_008"
+    }
+  ],
+  "correlation_analysis_notes": {
+    "timeline": "All events occur within 55 seconds (11:00:00 to 11:00:55 UTC)",
+    "device_anomaly": "HRM001 shows two alerts (data injection and patient ID change) within 10 seconds; suggests coordinated attack or device compromise",
+    "multi_device_pattern": "INP001 also shows programming change alert around same time; potential distributed attack or mass compromise",
+    "silent_device_check": "Dataset ends at 11:00:55 UTC; if no messages received after 30 seconds, silent device alerts would be generated for devices with no recent activity",
+    "recommended_llm_actions": [
+      "Correlate HRM001 device compromise across both alerts",
+      "Investigate whether INP001 and HRM001 share network segment or gateway",
+      "Check if patient P001, P002, P003, P004 are in same ward or facility",
+      "Review device logs for firmware updates or configuration changes around 10:59 UTC",
+      "Alert clinical staff: patient P001 (HRM001) may have wrong device assignment (P999); verify identity before administering care"
+    ]
+  }
+}

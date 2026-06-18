@@ -15,7 +15,7 @@ def to_dashboard_alert(alert):
     return {
         "type": alert.get("alert_type", "Unknown"),
         "device": alert.get("device_id", "Unknown"),
-        "severity": alert.get("severity", "Unknown"),
+        "severity": alert.get("severity", "Unknown").title(),
         "timestamp": alert.get("timestamp", ""),
         "description": alert.get("description", ""),
         "recommended_action": alert.get("recommended_action", ""),
@@ -43,6 +43,30 @@ if __name__ == "__main__":
         alert = ids.detect(message)
         if alert is not None:
             dashboard_alerts.append(to_dashboard_alert(alert))
+
+    # End-of-file checks (e.g., Silent Device Detection)
+    # Determine latest timestamp in dataset
+    latest_ts = None
+    for m in messages:
+        ts = m.get("timestamp")
+        if ts:
+            try:
+                # parse ISO timestamp
+                from datetime import datetime
+
+                t = datetime.fromisoformat(ts.replace("Z", "+00:00")).timestamp()
+            except Exception:
+                t = None
+            if t is not None:
+                if latest_ts is None or t > latest_ts:
+                    latest_ts = t
+
+    if latest_ts is None:
+        latest_ts = __import__("time").time()
+
+    eof_alerts = ids.finalize(latest_ts)
+    for a in eof_alerts:
+        dashboard_alerts.append(to_dashboard_alert(a))
 
     save_alerts(OUTPUT_PATH, dashboard_alerts)
 

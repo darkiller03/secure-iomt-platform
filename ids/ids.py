@@ -38,6 +38,13 @@ class IDS:
         },
     }
 
+    Z_SCORE_CONFIG = {
+        "heart_monitor": {"mean": 80, "std": 8},
+        "thermometer": {"mean": 38.5, "std": 0.7},
+        "oximeter": {"mean": 96, "std": 2},
+        "insulin_pump": {"mean": 25, "std": 5},
+    }
+
     SUPPORTED_DEVICE_TYPES = set(DEVICE_CONFIG.keys())
 
     def __init__(self, known_devices=None, dos_threshold=5, dos_window=2.0):
@@ -51,6 +58,18 @@ class IDS:
         self.msg_times = defaultdict(deque)
         self.dos_alerted = defaultdict(bool)
 
+        # Track last seen timestamp per device for silent device detection
+        self.last_seen = {}
+
+        # Track first patient_id per device to detect patient assignment changes
+        self.first_patient = {}
+
+        # Replay attack detection: store seen fingerprints
+        self.fingerprints = set()
+
+        # Insulin pump sliding window history (deque per device)
+        self.insulin_history = defaultdict(lambda: deque(maxlen=5))
+
         # Isolation Forest model for anomaly detection; one model per supported device type
         self.if_model = IsolationForestModel()
         self.if_model.train()
@@ -58,6 +77,9 @@ class IDS:
 
         # Counter for alerts to make readable alert IDs
         self.alert_counter = 0
+
+        # Track last anomaly scores for reporting
+        self.last_scores = {}
 
     def _next_alert_id(self):
         self.alert_counter += 1
@@ -106,6 +128,22 @@ class IDS:
 
         return float(value), ""
 
+    def _compute_z_score(self, device_type, value):
+        """Compute Z-score for a measurement.
+        
+        z = abs(value - mean) / std
+        Returns: z_score (float) or None if device_type not supported.
+        """
+        if device_type not in self.Z_SCORE_CONFIG:
+            return None
+        cfg = self.Z_SCORE_CONFIG[device_type]
+        mean = cfg["mean"]
+        std = cfg["std"]
+        if std == 0:
+            return 0.0
+        z = abs(value - mean) / std
+        return z
+
     def detect(self, data):
         """Run detection rules and return an alert dict or None."""
         ts = time.time()
@@ -125,7 +163,7 @@ class IDS:
             return self._build_alert(
                 alert_type="Data Injection",
                 device_id=device_id,
-                severity="MEDIUM",
+                severity="Medium",
                 anomaly_score=1.0,
                 description=description,
                 recommended_action="Send Gateway payload with a supported device_type, correct unit, and numeric value",
@@ -141,7 +179,7 @@ class IDS:
             return self._build_alert(
                 alert_type="Device Spoofing",
                 device_id=device_id,
-                severity="MEDIUM",
+                severity="Medium",
                 anomaly_score=1.0,
                 description="Unknown device identifier detected",
                 recommended_action="Verify device identity and network access",
@@ -163,12 +201,48 @@ class IDS:
                 return self._build_alert(
                     alert_type="Data Injection",
                     device_id=device_id,
-                    severity="MEDIUM",
+                    severity="Medium",
                     anomaly_score=1.0,
                     description="Potential injected patient ID pattern detected",
                     recommended_action="Inspect data source and validate sensor integrity",
                     timestamp=ts,
                 )
+
+        # Update last seen timestamp for silent device detection
+        if device_id:
+            self.last_seen[device_id] = event_ts
+
+        # Patient ID Change Detection
+        if device_id:
+            if device_id not in self.first_patient and patient_id:
+                self.first_patient[device_id] = patient_id
+            elif patient_id and self.first_patient.get(device_id) and patient_id != self.first_patient[device_id]:
+                prev = self.first_patient[device_id]
+                return self._build_alert(
+                    alert_type="Patient ID Change",
+                    device_id=device_id,
+                    severity="High",
+                    anomaly_score=1.0,
+                    description=f"Device {device_id} changed patient_id from {prev} to {patient_id}",
+                    recommended_action="Verify device assignment and patient identity",
+                    timestamp=ts,
+                )
+
+        # Replay Attack Detection
+        # Build a fingerprint using the message fields (including original timestamp string when available)
+        orig_ts = data.get("timestamp") or str(event_ts)
+        fingerprint = f"{device_id}|{patient_id}|{device_type}|{value}|{unit}|{orig_ts}"
+        if fingerprint in self.fingerprints:
+            return self._build_alert(
+                alert_type="Replay Attack",
+                device_id=device_id,
+                severity="High",
+                anomaly_score=1.0,
+                description=f"Repeated identical message detected for device {device_id}",
+                recommended_action="Verify message freshness and communication integrity",
+                timestamp=ts,
+            )
+        self.fingerprints.add(fingerprint)
 
         dq = self.msg_times[device_id]
         dq.append(event_ts)
@@ -179,7 +253,7 @@ class IDS:
             return self._build_alert(
                 alert_type="DoS",
                 device_id=device_id,
-                severity="HIGH",
+                severity="High",
                 anomaly_score=1.0,
                 description=f"High message rate from device ({len(dq)} msgs in {self.dos_window}s)",
                 recommended_action="Rate-limit or isolate the device",
@@ -192,18 +266,73 @@ class IDS:
             return self._build_alert(
                 alert_type="Data Injection",
                 device_id=device_id,
-                severity="HIGH",
+                severity="High",
                 anomaly_score=1.0,
                 description=f"{label} measurement outside acceptable range",
                 recommended_action="Verify sensor integrity",
                 timestamp=ts,
             )
 
+        # Insulin Pump Programming Change Suspected (prototype)
+        if device_type == "insulin_pump":
+            hist = self.insulin_history[device_id]
+            if len(hist) > 0:
+                prev_avg = sum(hist) / len(hist)
+                if measurement > prev_avg * 2 and measurement > 20:
+                    return self._build_alert(
+                        alert_type="Programming Change Suspected",
+                        device_id=device_id,
+                        severity="High",
+                        anomaly_score=1.0,
+                        description="Sudden increase in insulin delivery without contextual justification",
+                        recommended_action="Verify insulin pump programming and patient condition",
+                        timestamp=ts,
+                    )
+            # append current value to history
+            hist.append(measurement)
+
+        # Compute anomaly scores (supporting evidence, not decision drivers)
+        z_score = self._compute_z_score(device_type, measurement)
+        
+        # Store scores for reporting/LLM analysis
+        if device_id:
+            self.last_scores[device_id] = {
+                "device_type": device_type,
+                "value": measurement,
+                "z_score": z_score,
+                "timestamp": event_ts,
+            }
+
         # Strict normal-range policy: if the measurement is inside the known safe range,
         # do not use Isolation Forest as the primary decision mechanism.
         # Isolation Forest remains available for monitoring, but it cannot override
         # clear rule-based normal values.
         return None
+
+    def finalize(self, latest_event_ts, silence_threshold=30.0):
+        """Generate end-of-file alerts such as Silent Device Detection.
+
+        latest_event_ts: float (epoch seconds)
+        Returns list of alert dicts.
+        """
+        alerts = []
+        for device in sorted(self.known_devices):
+            last = self.last_seen.get(device)
+            if last is None or (latest_event_ts - last) > silence_threshold:
+                ts = time.time()
+                description = f"Device {device} stopped sending data for more than {int(silence_threshold)} seconds"
+                alerts.append(
+                    self._build_alert(
+                        alert_type="Silent Device",
+                        device_id=device,
+                        severity="Medium",
+                        anomaly_score=1.0,
+                        description=description,
+                        recommended_action="Check device connectivity and patient monitoring status",
+                        timestamp=ts,
+                    )
+                )
+        return alerts
 
     def process_message(self, data):
         """Process a message and print the result. Useful for local testing."""

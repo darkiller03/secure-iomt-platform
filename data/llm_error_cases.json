@@ -1,0 +1,191 @@
+[
+  {
+    "case_id": "FP-001",
+    "case_type": "false_positive",
+    "raw_message": {
+      "device_id": "HRM001",
+      "patient_id": "P001",
+      "device_type": "heart_monitor",
+      "value": 52,
+      "unit": "bpm",
+      "timestamp": "2026-06-15T10:15:00Z",
+      "status": "normal",
+      "context": "Patient just woke up; resting heart rate is naturally low"
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 3.5,
+      "isolation_forest": 0.88
+    },
+    "expected_label": "normal",
+    "explanation": "Z-score flags this as 3.5 standard deviations from mean (80 bpm), but 52 bpm is physiologically normal for a resting athlete or someone just waking. Rule-based correctly accepts it (within 40–180 bpm range). Isolation Forest may also flag it if training data had few examples of low heart rates."
+  },
+  {
+    "case_id": "FP-002",
+    "case_type": "false_positive",
+    "raw_message": {
+      "device_id": "THM001",
+      "patient_id": "P002",
+      "device_type": "thermometer",
+      "value": 36.0,
+      "unit": "°C",
+      "timestamp": "2026-06-15T06:30:00Z",
+      "status": "normal",
+      "context": "Early morning measurement; body temperature naturally lower before wake-up"
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 3.57,
+      "isolation_forest": 0.92
+    },
+    "expected_label": "normal",
+    "explanation": "Z-score computes (36.0 - 38.5) / 0.7 = 3.57, flagging it as anomalous. However, 36.0 °C is a normal early-morning body temperature. Rule-based correctly allows it (35–42 °C). This is a classic false positive from statistical methods when they ignore circadian variation."
+  },
+  {
+    "case_id": "FP-003",
+    "case_type": "false_positive",
+    "raw_message": {
+      "device_id": "OXY001",
+      "patient_id": "P003",
+      "device_type": "oximeter",
+      "value": 98.5,
+      "unit": "%",
+      "timestamp": "2026-06-15T14:45:00Z",
+      "status": "normal",
+      "context": "Healthy patient with naturally high oxygen saturation"
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 1.25,
+      "isolation_forest": 0.71
+    },
+    "expected_label": "normal",
+    "explanation": "Z-score: (98.5 - 96) / 2 = 1.25, well below threshold. However, if training data primarily contained values clustered at 95–97%, this measurement (98.5%) could be flagged by Isolation Forest as unusual. Clinically, 98.5% is excellent and normal for a healthy individual."
+  },
+  {
+    "case_id": "FN-001",
+    "case_type": "false_negative",
+    "raw_message": {
+      "device_id": "INP001",
+      "patient_id": "P004",
+      "device_type": "insulin_pump",
+      "value": 35,
+      "unit": "IU",
+      "timestamp": "2026-06-15T10:30:00Z",
+      "status": "attack",
+      "context": "Gradual insulin increase attack; subtly elevated but still within normal range"
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 2.0,
+      "isolation_forest": 0.61
+    },
+      "expected_label": "attack",
+    "explanation": "Z-score: (35 - 25) / 5 = 2.0, below the z > 3 threshold. Rule-based allows it (0–50 IU). If this is part of a slow attack that gradually increases insulin delivery over hours, all algorithms may miss it because each individual message appears normal. Detection would require temporal correlation or state machine logic."
+  },
+  {
+    "case_id": "FN-002",
+    "case_type": "false_negative",
+    "raw_message": {
+      "device_id": "HRM001",
+      "patient_id": "P001",
+      "device_type": "heart_monitor",
+      "value": 75,
+      "unit": "bpm",
+      "timestamp": "2026-06-15T11:00:00Z",
+      "status": "attack",
+      "context": "Subtle heart rate manipulation; adversary incrementally lowers reported heart rate by 2–3 bpm per message"
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 0.625,
+      "isolation_forest": 0.50
+    },
+    "expected_label": "attack",
+    "explanation": "Z-score: (75 - 80) / 8 = 0.625, well below threshold. Rule-based allows it. Isolation Forest score is low if this gradual drift is within the data distribution. A replay attack or slow manipulation that stays within medical ranges will be invisible to all three methods unless supplemented by sequence analysis or patient-specific baselines."
+  },
+  {
+    "case_id": "FN-003",
+    "case_type": "false_negative",
+    "raw_message": {
+      "device_id": "OXY001",
+      "patient_id": "P003",
+      "device_type": "oximeter",
+      "value": 94,
+      "unit": "%",
+      "timestamp": "2026-06-15T12:15:00Z",
+      "status": "attack",
+      "context": "Message replay: exact duplicate of a message from 10 minutes ago (different timestamp)"
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 1.0,
+      "isolation_forest": 0.55
+    },
+    "expected_label": "attack",
+    "explanation": "All three algorithms see only the measurement (94%), which is medically valid and statistically unremarkable. Replay attack detection requires fingerprinting the full message (including timestamp or sequence), not just the measurement value. This is why the IDS includes explicit Replay Attack Detection logic independent of anomaly algorithms."
+  },
+  {
+    "case_id": "BORDERLINE-001",
+    "case_type": "borderline",
+    "raw_message": {
+      "device_id": "THM001",
+      "patient_id": "P002",
+      "device_type": "thermometer",
+      "value": 39.5,
+      "unit": "°C",
+      "timestamp": "2026-06-15T15:20:00Z",
+      "status": "borderline",
+      "context": "High fever; clinically significant but still within device range"
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 1.43,
+      "isolation_forest": 0.78
+    },
+    "expected_label": "normal_but_concerning",
+    "explanation": "Z-score: (39.5 - 38.5) / 0.7 = 1.43, below threshold. Rule-based allows it (35–42 °C). From a medical perspective, 39.5 °C is a significant fever that should trigger clinical review, but it is not a cybersecurity attack. LLM should recognize this as a valid measurement that warrants escalation to clinical staff, not security alerts."
+  },
+  {
+    "case_id": "BORDERLINE-002",
+    "case_type": "borderline",
+    "raw_message": {
+      "device_id": "HRM001",
+      "patient_id": "P001",
+      "device_type": "heart_monitor",
+      "value": 178,
+      "unit": "bpm",
+      "timestamp": "2026-06-15T16:00:00Z",
+      "status": "borderline",
+      "context": "Patient during exercise; elevated but within device range; legitimately high."
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 12.25,
+      "isolation_forest": 0.94
+    },
+    "expected_label": "normal_but_extreme",
+    "explanation": "Z-score: (178 - 80) / 8 = 12.25, very high but may not trigger alerts if threshold is z > 15. Rule-based allows it (40–180 bpm, at boundary). Isolation Forest likely flags it (0.94). This is a legitimate exercise scenario but represents extreme physiology. LLM should contextualize: if patient is known to exercise at this time, classify as normal; if unexpected, escalate."
+  },
+  {
+    "case_id": "BORDERLINE-003",
+    "case_type": "borderline",
+    "raw_message": {
+      "device_id": "INP001",
+      "patient_id": "P004",
+      "device_type": "insulin_pump",
+      "value": 48,
+      "unit": "IU",
+      "timestamp": "2026-06-15T17:30:00Z",
+      "status": "borderline",
+      "context": "High insulin delivery at end of device range; may indicate patient needs or pump malfunction"
+    },
+    "algorithm_outputs": {
+      "rule_based": "NORMAL",
+      "z_score": 4.6,
+      "isolation_forest": 0.89
+    },
+    "expected_label": "normal_but_investigate",
+    "explanation": "Z-score: (48 - 25) / 5 = 4.6, above z > 3 threshold. Rule-based allows it (0–50 IU). Isolation Forest flags it (0.89). This measurement is near the device safety limit and may represent either a legitimate high insulin dose (in response to high blood glucose) or the onset of a programming attack. LLM should flag for correlation with blood glucose history, patient dosing schedule, and sequence analysis."
+  }
+]
