@@ -9,7 +9,7 @@ from collections import Counter
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEVICES_FILE = BASE_DIR / "data" / "devices.json"
+VALIDATED_FILE = BASE_DIR / "data" / "validated_data.json"
 ALERTS_FILE = BASE_DIR / "data" / "alerts.json"
 LOGS_FILE = BASE_DIR / "data" / "logs.json"
 
@@ -23,6 +23,9 @@ st.caption(
     "Cybersecurity supervision platform for Internet of Medical Things"
 )
 
+if hasattr(st, "autorefresh"):
+    st.autorefresh(interval=2000, key="secure_iomt_dashboard_refresh")
+
 
 def load_json(path, default):
     try:
@@ -32,7 +35,29 @@ def load_json(path, default):
         return default
 
 
-devices = load_json(DEVICES_FILE, [])
+def load_devices_from_validated_data(path):
+    messages = load_json(path, [])
+
+    latest_by_device = {}
+    for message in messages:
+        device_id = message.get("device_id")
+        if not device_id:
+            continue
+
+        latest_by_device[device_id] = {
+            "device_id": device_id,
+            "patient_id": message.get("patient_id", ""),
+            "device_type": message.get("device_type", ""),
+            "value": message.get("value", ""),
+            "unit": message.get("unit", ""),
+            "timestamp": message.get("timestamp", ""),
+            "status": message.get("status", ""),
+        }
+
+    return list(latest_by_device.values())
+
+
+devices = load_devices_from_validated_data(VALIDATED_FILE)
 alerts = load_json(ALERTS_FILE, [])
 logs = load_json(LOGS_FILE, [])
 
@@ -148,18 +173,24 @@ Keep it concise.
 st.subheader("LLM Incident Analysis")
 
 if alerts:
-    alert_options = [
-        f"{alert.get('alert_id', i)} - {alert.get('alert_type', alert.get('type', 'Unknown'))} - {alert.get('device_id', alert.get('device', 'Unknown'))}"
-        for i, alert in enumerate(alerts)
-    ]
+    # Create alert options with unique IDs
+    alert_options = {}
+    for i, alert in enumerate(alerts):
+        option_label = f"{alert.get('alert_id', i)} - {alert.get('alert_type', alert.get('type', 'Unknown'))} - {alert.get('device_id', alert.get('device', 'Unknown'))}"
+        alert_options[option_label] = alert
+
+    # Initialize session state for alert selection
+    if "selected_alert_option" not in st.session_state:
+        st.session_state.selected_alert_option = list(alert_options.keys())[0]
 
     selected_option = st.selectbox(
         "Select an alert to analyze",
-        alert_options
+        list(alert_options.keys()),
+        index=list(alert_options.keys()).index(st.session_state.selected_alert_option) if st.session_state.selected_alert_option in alert_options else 0,
+        key="selected_alert_option"
     )
 
-    selected_index = alert_options.index(selected_option)
-    selected_alert = alerts[selected_index]
+    selected_alert = alert_options[selected_option]
 
     if st.button("Analyze with AI"):
         with st.spinner("Analyzing incident with Phi-3..."):

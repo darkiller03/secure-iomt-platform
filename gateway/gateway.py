@@ -1,5 +1,7 @@
 import os
 import json
+import time
+from threading import Event
 from datetime import datetime
 from pathlib import Path
 
@@ -9,8 +11,9 @@ BROKER_HOST = os.getenv("BROKER_HOST", "localhost")
 BROKER_PORT = 1883
 TOPIC = "iomt/devices"
 
-LOG_FILE = Path("data/logs.json")
-VALIDATED_FILE = Path("data/validated_data.json")
+DATA_DIR = Path("/app/data")
+LOG_FILE = DATA_DIR / "logs.json"
+VALIDATED_FILE = DATA_DIR / "validated_data.json"
 
 REQUIRED_FIELDS = [
     "device_id",
@@ -21,20 +24,7 @@ REQUIRED_FIELDS = [
     "timestamp"
 ]
 
-AUTHORIZED_DEVICES = {
-    "HRM001": {
-        "device_type": "heart_monitor"
-    },
-    "INS001": {
-        "device_type": "insulin_pump"
-    },
-    "TMP001": {
-        "device_type": "smart_thermometer"
-    },
-    "OXY001": {
-        "device_type": "oximeter"
-    }
-}
+connected_event = Event()
 
 
 def write_log(level, message):
@@ -76,8 +66,11 @@ def save_validated_data(data):
 
     validated.append(data)
 
-    with open(VALIDATED_FILE, "w", encoding="utf-8") as file:
+    temp_file = VALIDATED_FILE.with_suffix(".json.tmp")
+    with open(temp_file, "w", encoding="utf-8") as file:
         json.dump(validated, file, indent=2)
+
+    temp_file.replace(VALIDATED_FILE)
 
 
 def validate_message(data):
@@ -85,20 +78,7 @@ def validate_message(data):
         if field not in data:
             return False, f"Missing field: {field}"
 
-    device_id = data["device_id"]
-    device_type = data["device_type"]
     value = data["value"]
-
-    if device_id not in AUTHORIZED_DEVICES:
-        return False, f"Unknown device ID: {device_id}"
-
-    expected_type = AUTHORIZED_DEVICES[device_id]["device_type"]
-
-    if device_type != expected_type:
-        return False, (
-            f"Invalid device type for {device_id}. "
-            f"Expected {expected_type}"
-        )
 
     if not isinstance(value, (int, float)):
         return False, "Value must be numeric"
@@ -108,9 +88,10 @@ def validate_message(data):
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
-        print("Gateway connected to MQTT broker")
+        print("Gateway connected to MQTT broker", flush=True)
         client.subscribe(TOPIC)
-        print(f"Subscribed to topic: {TOPIC}")
+        print(f"Subscribed to topic: {TOPIC}", flush=True)
+        connected_event.set()
 
         write_log(
             "INFO",
@@ -118,7 +99,7 @@ def on_connect(client, userdata, flags, rc):
         )
 
     else:
-        print("Connection failed")
+        print("Connection failed", flush=True)
 
         write_log(
             "ERROR",
@@ -126,32 +107,34 @@ def on_connect(client, userdata, flags, rc):
         )
 
 
+def on_disconnect(client, userdata, rc):
+    print(f"Gateway disconnected from MQTT broker: {rc}", flush=True)
+
+    write_log(
+        "WARNING",
+        f"Gateway disconnected from MQTT broker: {rc}"
+    )
+
+
 def on_message(client, userdata, msg):
     try:
         payload = msg.payload.decode()
+        print(f"Received message: {payload}", flush=True)
         data = json.loads(payload)
 
         is_valid, reason = validate_message(data)
 
         if is_valid:
-            device_id = data["device_id"]
-            device_type = data["device_type"]
-
-            print(
-                f"VALID MESSAGE from "
-                f"{device_id} ({device_type})"
-            )
-
             write_log(
                 "INFO",
-                f"Valid message received from "
-                f"{device_id} ({device_type})"
+                f"Valid message received: {payload}"
             )
 
             save_validated_data(data)
+            print("Saved validated message to /app/data/validated_data.json", flush=True)
 
         else:
-            print("INVALID MESSAGE")
+            print(f"INVALID MESSAGE: {reason}", flush=True)
 
             write_log(
                 "WARNING",
@@ -159,7 +142,7 @@ def on_message(client, userdata, msg):
             )
 
     except json.JSONDecodeError:
-        print("INVALID JSON")
+        print("INVALID JSON", flush=True)
 
         write_log(
             "ERROR",
@@ -167,7 +150,7 @@ def on_message(client, userdata, msg):
         )
 
     except Exception as error:
-        print("GATEWAY ERROR")
+        print("GATEWAY ERROR", flush=True)
 
         write_log(
             "ERROR",
@@ -179,12 +162,42 @@ client = mqtt.Client()
 
 client.on_connect = on_connect
 client.on_message = on_message
+client.on_disconnect = on_disconnect
 
-client.connect(
-    BROKER_HOST,
-    BROKER_PORT
-)
 
-print("Gateway started")
+def connect_with_retry():
+    while True:
+        try:
+            client.connect(BROKER_HOST, BROKER_PORT)
+            return
+        except OSError as error:
+            print(
+                f"Gateway failed to connect to MQTT broker at {BROKER_HOST}:{BROKER_PORT}: {error}",
+                flush=True,
+            )
+            write_log(
+                "ERROR",
+                f"Gateway failed to connect to MQTT broker at {BROKER_HOST}:{BROKER_PORT}: {error}",
+            )
+            time.sleep(2)
 
-client.loop_forever()
+
+connect_with_retry()
+
+print("Gateway started", flush=True)
+
+client.loop_start()
+
+if not connected_event.wait(timeout=10):
+    print("Gateway failed to connect to MQTT broker")
+
+    write_log(
+        "ERROR",
+        "Gateway failed to connect to MQTT broker"
+    )
+
+try:
+    while True:
+        time.sleep(1)
+except KeyboardInterrupt:
+    pass

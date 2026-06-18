@@ -13,7 +13,7 @@ from sklearn.ensemble import IsolationForest
 class IsolationForestModel:
     TRAIN_CONFIG = {
         "heart_monitor": {"loc": 80.0, "scale": 8.0, "min": 40.0, "max": 180.0},
-        "thermometer": {"loc": 38.5, "scale": 0.7, "min": 35.0, "max": 42.0},
+        "smart_thermometer": {"loc": 38.5, "scale": 0.7, "min": 35.0, "max": 42.0},
         "oximeter": {"loc": 96.0, "scale": 2.0, "min": 90.0, "max": 100.0},
         "insulin_pump": {"loc": 25.0, "scale": 5.0, "min": 0.0, "max": 50.0},
     }
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     print("Sample scores:")
     for device_type, values in {
         "heart_monitor": [72, 85, 35, 190],
-        "thermometer": [36.5, 40.0, 30.0, 45.0],
+        "smart_thermometer": [36.5, 40.0, 30.0, 45.0],
         "oximeter": [95, 99, 85, 102],
         "insulin_pump": [25, 10, 55, 80],
     }.items():

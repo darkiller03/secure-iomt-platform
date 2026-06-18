@@ -1,16 +1,31 @@
 import json
+import os
 import random
 import time
 from datetime import datetime
 
 import paho.mqtt.client as mqtt
 
-BROKER = "localhost"
+
+
+def get_broker_host():
+    broker_host = os.getenv("BROKER_HOST")
+    if broker_host:
+        return broker_host
+
+    if os.getenv("WSL_DISTRO_NAME"):
+        return "host.docker.internal"
+
+    return "localhost"
+
+
+BROKER = get_broker_host()
 PORT = 1883
 TOPIC = "iomt/devices"
 
 client = mqtt.Client()
 client.connect(BROKER, PORT)
+client.loop_start()
 
 devices = [
     {
@@ -63,8 +78,11 @@ while True:
     client.publish(
         TOPIC,
         json.dumps(message)
-    )
+    ).wait_for_publish()
 
-    print(message)
+    print(message, flush=True)
 
     time.sleep(3)
+
+client.loop_stop()
+client.disconnect()

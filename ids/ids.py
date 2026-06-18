@@ -2,7 +2,8 @@ import json
 import re
 import time
 from collections import deque, defaultdict
-from datetime import datetime
+from datetime import datetime, UTC
+from pathlib import Path
 from isolation_forest_model import IsolationForestModel
 from alert_generator import create_alert
 
@@ -40,8 +41,7 @@ class IDS:
 
     SUPPORTED_DEVICE_TYPES = set(DEVICE_CONFIG.keys())
 
-    def __init__(self, known_devices=None, dos_threshold=5, dos_window=2.0):
-        # Known devices list
+    def __init__(self, known_devices=None, dos_threshold=100, dos_window=1.0):        # Known devices list
         self.known_devices = set(known_devices or ["HRM001", "TMP001", "OXY001", "INS001"])
 
         # DoS detection: keep timestamp deque per device
@@ -174,7 +174,7 @@ class IDS:
         dq.append(event_ts)
         while dq and (event_ts - dq[0] > self.dos_window):
             dq.popleft()
-        if len(dq) > self.dos_threshold:
+        if len(dq) > self.dos_threshold and not self.dos_alerted[device_id]:
             self.dos_alerted[device_id] = True
             return self._build_alert(
                 alert_type="DoS",
@@ -199,10 +199,23 @@ class IDS:
                 timestamp=ts,
             )
 
-        # Strict normal-range policy: if the measurement is inside the known safe range,
-        # do not use Isolation Forest as the primary decision mechanism.
-        # Isolation Forest remains available for monitoring, but it cannot override
-        # clear rule-based normal values.
+        score = self.if_model.score(device_type, measurement)
+        print(
+            f"IF DEBUG -> device={device_type}, "
+            f"value={measurement}, "
+            f"score={score:.4f}"
+        )
+        if score > self.if_threshold:
+            return self._build_alert(
+                alert_type="Data Injection",
+                device_id=device_id,
+                severity="MEDIUM",
+                anomaly_score=score,
+                description=f"{label} measurement is statistically abnormal",
+                recommended_action="Inspect sensor behavior and verify data integrity",
+                timestamp=ts,
+            )
+
         return None
 
     def process_message(self, data):
@@ -214,16 +227,70 @@ class IDS:
             print(json.dumps(alert, indent=2))
         return alert
 
+DATA_DIR = Path("/app/data")
+VALIDATED_FILE = DATA_DIR / "validated_data.json"
+ALERTS_FILE = DATA_DIR / "alerts.json"
+
+
+def load_messages():
+    if not VALIDATED_FILE.exists():
+        return []
+
+    try:
+        with open(VALIDATED_FILE, "r", encoding="utf-8") as f:
+            content = f.read().strip()
+            if not content:
+                return []
+            return json.loads(content)
+    except Exception as e:
+        print(f"Error reading validated_data.json: {e}")
+        return []
+
+
+def save_alerts(alerts):
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    with open(ALERTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(alerts, f, indent=2)
+
+    print(f"Alerts saved to {ALERTS_FILE}")
+
+
+def normalize_alert(alert):
+    return {
+        "type": alert.get("alert_type"),
+        "device": alert.get("device_id"),
+        "severity": alert.get("severity"),
+        "timestamp": alert.get("timestamp"),
+        "description": alert.get("description"),
+        "recommended_action": alert.get("recommended_action"),
+        "anomaly_score": alert.get("anomaly_score"),
+    }
+
+
+def run_ids_once():
+    ids = IDS()
+    messages = load_messages()
+
+    alerts = []
+
+    for msg in messages:
+        alert = ids.detect(msg)
+        if alert:
+            alerts.append(normalize_alert(alert))
+
+    save_alerts(alerts)
+
+    print(f"Analyzed {len(messages)} messages")
+    print(f"Generated {len(alerts)} alerts")
+
+
+def run_ids_loop():
+    while True:
+        run_ids_once()
+        time.sleep(2)
+
+
 
 if __name__ == "__main__":
-    demo = IDS()
-    sample = {
-        "device_id": "HRM001",
-        "patient_id": "P001",
-        "device_type": "heart_monitor",
-        "value": 72,
-        "unit": "bpm",
-        "timestamp": "2026-06-01T10:15:00Z",
-        "status": "normal",
-    }
-    demo.process_message(sample)
+    run_ids_loop()

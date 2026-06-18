@@ -11,7 +11,7 @@ services:
       dockerfile: gateway/Dockerfile
     container_name: secureiomt-gateway
     environment:
-      - BROKER_HOST=secureiomt-mosquitto
+      - BROKER_HOST=mosquitto
     depends_on:
       - mosquitto
     volumes:
@@ -38,3 +38,25 @@ services:
       - ./data:/app/data
     depends_on:
       - ids
+
+  normal-simulator:
+    build:
+      context: .
+      dockerfile: simulator/Dockerfile.normal
+    container_name: secureiomt-normal-simulator
+    environment:
+      - BROKER_HOST=mosquitto
+    depends_on:
+      - mosquitto
+    restart: on-failure
+
+  multi-simulator:
+    build:
+      context: .
+      dockerfile: simulator/Dockerfile.simulator
+    container_name: secureiomt-multi-simulator
+    environment:
+      - BROKER_HOST=mosquitto
+    depends_on:
+      - mosquitto
+    restart: on-failure
