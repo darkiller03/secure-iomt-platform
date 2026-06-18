@@ -1,1 +1,650 @@
-[]
+[
+  {
+    "timestamp": "2026-06-18T13:59:24",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Gateway connected to MQTT broker"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:29",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 37.24, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T13:59:29.885434\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:31",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 74, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T13:59:31.885283+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:32",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 76.54, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T13:59:32.885983\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:35",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 36.34, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T13:59:35.886409\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:36",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 65, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T13:59:36.885791+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:38",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P001\", \"device_type\": \"oximeter\", \"value\": 98.88, \"unit\": \"%\", \"timestamp\": \"2026-06-18T13:59:38.886905\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:41",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 69, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T13:59:41.886190+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:41",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P003\", \"device_type\": \"smart_thermometer\", \"value\": 37.02, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T13:59:41.887431\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:44",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P002\", \"device_type\": \"heart_monitor\", \"value\": 73.11, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T13:59:44.887740\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:46",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 66, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T13:59:46.886703+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:47",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P002\", \"device_type\": \"oximeter\", \"value\": 95.39, \"unit\": \"%\", \"timestamp\": \"2026-06-18T13:59:47.888280\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:50",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P001\", \"device_type\": \"smart_thermometer\", \"value\": 37.38, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T13:59:50.888668\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:51",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 83, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T13:59:51.887167+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:53",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P005\", \"device_type\": \"insulin_pump\", \"value\": 9.05, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T13:59:53.889072\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:56",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 87, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T13:59:56.887571+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T13:59:56",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 36.85, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T13:59:56.889499\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:02",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P002\", \"device_type\": \"oximeter\", \"value\": 96.71, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:00:02.617143\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:04",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 73, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:04.615236+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:05",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P001\", \"device_type\": \"oximeter\", \"value\": 95.14, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:00:05.617617\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:08",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P003\", \"device_type\": \"heart_monitor\", \"value\": 78.9, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:08.618070\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:09",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 79, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:09.616070+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:11",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P002\", \"device_type\": \"smart_thermometer\", \"value\": 37.69, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:00:11.618589\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:14",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 84, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:14.616696+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:14",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P003\", \"device_type\": \"smart_thermometer\", \"value\": 36.15, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:00:14.619043\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:17",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P004\", \"device_type\": \"insulin_pump\", \"value\": 7.74, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:00:17.619587\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:19",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 86, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:19.617116+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:20",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 37.34, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:00:20.620173\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:23",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P001\", \"device_type\": \"oximeter\", \"value\": 96.14, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:00:23.620901\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:24",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 79, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:24.617668+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:26",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P004\", \"device_type\": \"oximeter\", \"value\": 95.11, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:00:26.621355\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:29",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 82, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:29.618181+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:29",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P005\", \"device_type\": \"heart_monitor\", \"value\": 60.82, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:29.621846\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:35",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P004\", \"device_type\": \"insulin_pump\", \"value\": 7.9, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:00:35.348557\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:37",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 72, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:37.345092+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:38",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P001\", \"device_type\": \"smart_thermometer\", \"value\": 37.53, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:00:38.348952\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:41",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P005\", \"device_type\": \"oximeter\", \"value\": 95.44, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:00:41.349565\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:42",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 81, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:42.345794+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:44",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P005\", \"device_type\": \"oximeter\", \"value\": 99.72, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:00:44.350124\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:47",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 89, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:47.346327+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:47",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P003\", \"device_type\": \"heart_monitor\", \"value\": 71.05, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:47.350648\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:50",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P005\", \"device_type\": \"oximeter\", \"value\": 99.46, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:00:50.351177\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:52",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 76, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:52.346968+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:53",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P002\", \"device_type\": \"heart_monitor\", \"value\": 62.72, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:53.351570\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:56",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P004\", \"device_type\": \"oximeter\", \"value\": 96.92, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:00:56.352037\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:57",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 89, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:00:57.347450+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:00:59",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P001\", \"device_type\": \"smart_thermometer\", \"value\": 37.58, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:00:59.352613\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:02",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 67, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:02.347876+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:02",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 60.51, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:02.353037\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:08",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 36.26, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:01:08.080142\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:10",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 68, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:10.075458+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:11",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P005\", \"device_type\": \"smart_thermometer\", \"value\": 37.51, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:01:11.080584\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:14",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P002\", \"device_type\": \"heart_monitor\", \"value\": 63.98, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:14.081021\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:15",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 69, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:15.076147+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:17",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P003\", \"device_type\": \"insulin_pump\", \"value\": 6.05, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:01:17.081433\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:20",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 71, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:20.076630+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:20",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P003\", \"device_type\": \"smart_thermometer\", \"value\": 37.08, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:01:20.081891\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:23",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P005\", \"device_type\": \"insulin_pump\", \"value\": 8.41, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:01:23.082283\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:25",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 83, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:25.077023+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:26",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P002\", \"device_type\": \"insulin_pump\", \"value\": 3.08, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:01:26.082751\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:29",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 36.02, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:01:29.083186\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:30",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 82, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:30.077747+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:32",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P002\", \"device_type\": \"oximeter\", \"value\": 97.76, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:01:32.083780\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:35",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 79, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:35.078297+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:35",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P005\", \"device_type\": \"heart_monitor\", \"value\": 81.12, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:35.084155\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:40",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P005\", \"device_type\": \"smart_thermometer\", \"value\": 37.83, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:01:40.810828\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:42",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 80, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:42.805153+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:43",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 37.66, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:01:43.811190\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:46",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P002\", \"device_type\": \"smart_thermometer\", \"value\": 37.64, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:01:46.811562\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:47",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 67, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:47.805831+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:49",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 96.31, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:49.812138\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:52",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 78, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:52.806250+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:52",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 69.08, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:52.812551\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:55",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P005\", \"device_type\": \"heart_monitor\", \"value\": 76.34, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:55.812900\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:57",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 72, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:01:57.806662+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:01:58",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 36.42, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:01:58.813376\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:01",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P002\", \"device_type\": \"insulin_pump\", \"value\": 3.71, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:02:01.813776\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:02",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 68, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:02.807233+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:04",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P002\", \"device_type\": \"oximeter\", \"value\": 96.47, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:02:04.814201\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:07",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 71, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:07.807732+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:07",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P004\", \"device_type\": \"insulin_pump\", \"value\": 9.45, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:02:07.814586\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:13",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P001\", \"device_type\": \"oximeter\", \"value\": 96.11, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:02:13.542096\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:15",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 88, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:15.535559+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:16",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P005\", \"device_type\": \"insulin_pump\", \"value\": 3.97, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:02:16.542507\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:19",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P004\", \"device_type\": \"insulin_pump\", \"value\": 3.12, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:02:19.543069\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:20",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 70, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:20.536128+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:22",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P002\", \"device_type\": \"insulin_pump\", \"value\": 1.4, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:02:22.543470\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:25",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 90, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:25.536649+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:25",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P005\", \"device_type\": \"insulin_pump\", \"value\": 4.37, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:02:25.543837\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:28",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P002\", \"device_type\": \"smart_thermometer\", \"value\": 36.11, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:02:28.544229\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:30",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 82, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:30.537049+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:31",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P005\", \"device_type\": \"smart_thermometer\", \"value\": 36.99, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:02:31.544656\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:34",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P001\", \"device_type\": \"smart_thermometer\", \"value\": 36.19, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:02:34.545093\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:35",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 90, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:35.537549+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:37",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P002\", \"device_type\": \"insulin_pump\", \"value\": 7.16, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:02:37.545574\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:40",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 87, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:40.537988+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:40",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P003\", \"device_type\": \"oximeter\", \"value\": 99.73, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:02:40.546508\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:46",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P002\", \"device_type\": \"oximeter\", \"value\": 95.43, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:02:46.273774\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:48",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 83, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:48.265245+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:49",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P003\", \"device_type\": \"smart_thermometer\", \"value\": 37.64, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:02:49.274603\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:52",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 86.63, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:52.275265\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:53",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 68, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:53.265719+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:55",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P001\", \"device_type\": \"insulin_pump\", \"value\": 5.63, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:02:55.275807\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:58",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 73, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:02:58.266381+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:02:58",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"TMP001\", \"patient_id\": \"P004\", \"device_type\": \"smart_thermometer\", \"value\": 36.08, \"unit\": \"\\u00b0C\", \"timestamp\": \"2026-06-18T14:02:58.276334\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:03:01",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"INS001\", \"patient_id\": \"P005\", \"device_type\": \"insulin_pump\", \"value\": 6.92, \"unit\": \"u/h\", \"timestamp\": \"2026-06-18T14:03:01.276859\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:03:03",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"HRM001\", \"patient_id\": \"P001\", \"device_type\": \"heart_monitor\", \"value\": 78, \"unit\": \"bpm\", \"timestamp\": \"2026-06-18T14:03:03.266911+00:00\", \"status\": \"normal\"}"
+  },
+  {
+    "timestamp": "2026-06-18T14:03:04",
+    "source": "Gateway",
+    "level": "INFO",
+    "message": "Valid message received: {\"device_id\": \"OXY001\", \"patient_id\": \"P003\", \"device_type\": \"oximeter\", \"value\": 97.49, \"unit\": \"%\", \"timestamp\": \"2026-06-18T14:03:04.277494\", \"status\": \"normal\"}"
+  }
+]

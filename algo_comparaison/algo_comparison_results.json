@@ -1,0 +1,122 @@
+[
+  {
+    "device_type": "smart_thermometer",
+    "algorithm": "Isolation Forest",
+    "total_messages": 24,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 2,
+    "true_positive": 1,
+    "false_positive": 1,
+    "false_negative": 0
+  },
+  {
+    "device_type": "smart_thermometer",
+    "algorithm": "One-Class SVM",
+    "total_messages": 24,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 1,
+    "true_positive": 0,
+    "false_positive": 1,
+    "false_negative": 1
+  },
+  {
+    "device_type": "smart_thermometer",
+    "algorithm": "LOF",
+    "total_messages": 24,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 2,
+    "true_positive": 1,
+    "false_positive": 1,
+    "false_negative": 0
+  },
+  {
+    "device_type": "heart_monitor",
+    "algorithm": "Isolation Forest",
+    "total_messages": 54,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 3,
+    "true_positive": 1,
+    "false_positive": 2,
+    "false_negative": 0
+  },
+  {
+    "device_type": "heart_monitor",
+    "algorithm": "One-Class SVM",
+    "total_messages": 54,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 1,
+    "true_positive": 0,
+    "false_positive": 1,
+    "false_negative": 1
+  },
+  {
+    "device_type": "heart_monitor",
+    "algorithm": "LOF",
+    "total_messages": 54,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 3,
+    "true_positive": 1,
+    "false_positive": 2,
+    "false_negative": 0
+  },
+  {
+    "device_type": "oximeter",
+    "algorithm": "Isolation Forest",
+    "total_messages": 17,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 1,
+    "true_positive": 1,
+    "false_positive": 0,
+    "false_negative": 0
+  },
+  {
+    "device_type": "oximeter",
+    "algorithm": "One-Class SVM",
+    "total_messages": 17,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 2,
+    "true_positive": 0,
+    "false_positive": 2,
+    "false_negative": 1
+  },
+  {
+    "device_type": "oximeter",
+    "algorithm": "LOF",
+    "total_messages": 17,
+    "expected_anomalies_rule_based": 1,
+    "detected_anomalies": 1,
+    "true_positive": 1,
+    "false_positive": 0,
+    "false_negative": 0
+  },
+  {
+    "device_type": "insulin_pump",
+    "algorithm": "Isolation Forest",
+    "total_messages": 15,
+    "expected_anomalies_rule_based": 0,
+    "detected_anomalies": 1,
+    "true_positive": 0,
+    "false_positive": 1,
+    "false_negative": 0
+  },
+  {
+    "device_type": "insulin_pump",
+    "algorithm": "One-Class SVM",
+    "total_messages": 15,
+    "expected_anomalies_rule_based": 0,
+    "detected_anomalies": 3,
+    "true_positive": 0,
+    "false_positive": 3,
+    "false_negative": 0
+  },
+  {
+    "device_type": "insulin_pump",
+    "algorithm": "LOF",
+    "total_messages": 15,
+    "expected_anomalies_rule_based": 0,
+    "detected_anomalies": 1,
+    "true_positive": 0,
+    "false_positive": 1,
+    "false_negative": 0
+  }
+]

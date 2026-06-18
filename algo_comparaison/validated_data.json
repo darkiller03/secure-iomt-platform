@@ -961,5 +961,26 @@
     "unit": "%",
     "timestamp": "2026-06-18T14:03:04.277494",
     "status": "normal"
+  },
+  {
+    "device_id": "HRM001",
+    "patient_id": "P001",
+    "device_type": "heart_monitor",
+    "value": 250,
+    "unit": "bpm"
+  },
+  {
+    "device_id": "OXY001",
+    "patient_id": "P001",
+    "device_type": "oximeter",
+    "value": 70,
+    "unit": "%"
+  },
+  {
+    "device_id": "TMP001",
+    "patient_id": "P001",
+    "device_type": "smart_thermometer",
+    "value": 50,
+    "unit": "°C"
   }
 ]
