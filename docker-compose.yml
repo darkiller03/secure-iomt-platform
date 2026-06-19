@@ -60,3 +60,39 @@ services:
     depends_on:
       - mosquitto
     restart: on-failure
+
+  attack-data-injection:
+    build:
+      context: .
+      dockerfile: simulator/Dockerfile.simulator
+    environment:
+      - BROKER_HOST=mosquitto
+    depends_on:
+      - mosquitto
+    command: ["python", "simulator/attack_data_injection.py"]
+    profiles:
+      - attacks
+
+  attack-device-spoofing:
+    build:
+      context: .
+      dockerfile: simulator/Dockerfile.simulator
+    environment:
+      - BROKER_HOST=mosquitto
+    depends_on:
+      - mosquitto
+    command: ["python", "simulator/attack_device_spoofing.py"]
+    profiles:
+      - attacks
+
+  attack-dos:
+    build:
+      context: .
+      dockerfile: simulator/Dockerfile.simulator
+    environment:
+      - BROKER_HOST=mosquitto
+    depends_on:
+      - mosquitto
+    command: ["python", "simulator/attack_dos.py"]
+    profiles:
+      - attacks

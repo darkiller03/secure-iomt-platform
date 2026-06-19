@@ -2,28 +2,27 @@ import json
 import os
 import time
 from datetime import datetime, UTC
-
 import paho.mqtt.client as mqtt
 
-
-def get_broker_host():
-    broker_host = os.getenv("BROKER_HOST")
-    if broker_host:
-        return broker_host
-
-    if os.getenv("WSL_DISTRO_NAME"):
-        return "host.docker.internal"
-
-    return "localhost"
-
-
-BROKER_HOST = get_broker_host()
+BROKER_HOST = os.getenv("BROKER_HOST", "localhost")
 BROKER_PORT = 1883
 TOPIC = "iomt/devices"
 
+def on_connect(client, userdata, flags, rc):
+    print(f"Connected with result code: {rc}")
+
+def on_publish(client, userdata, mid):
+    print(f"Message published with mid: {mid}")
+
 client = mqtt.Client()
+client.on_connect = on_connect
+client.on_publish = on_publish
+
+print(f"Connecting to MQTT broker {BROKER_HOST}:{BROKER_PORT}")
 client.connect(BROKER_HOST, BROKER_PORT, 60)
 client.loop_start()
+
+time.sleep(1)
 
 data = {
     "device_id": "HRM001",
@@ -35,11 +34,12 @@ data = {
     "status": "attack"
 }
 
-result = client.publish(TOPIC, json.dumps(data))
+payload = json.dumps(data)
+result = client.publish(TOPIC, payload, qos=1)
 result.wait_for_publish()
 
 print("DATA INJECTION SENT:", data)
 
-time.sleep(1)
+time.sleep(2)
 client.loop_stop()
 client.disconnect()

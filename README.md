@@ -76,7 +76,8 @@ From your terminal (with venv activated), run attack scripts:
 **4.1 Data Injection Attack** (HRM001 with invalid heart rate):
 
 ```bash
-./venv/bin/python3 simulator/attack_data_injection.py
+docker compose run --rm attack-data-injection
+
 ```
 
 Expected: `Data Injection` alert in dashboard with severity `High`.
@@ -84,7 +85,8 @@ Expected: `Data Injection` alert in dashboard with severity `High`.
 **4.2 Device Spoofing Attack** (unknown device ID):
 
 ```bash
-./venv/bin/python3 simulator/attack_device_spoofing.py
+docker compose run --rm attack-device-spoofing
+
 ```
 
 Expected: `Device Spoofing` alert for device `UNKNOWN999` with severity `Medium`.
@@ -92,7 +94,7 @@ Expected: `Device Spoofing` alert for device `UNKNOWN999` with severity `Medium`
 **4.3 Denial of Service Attack** (1000 rapid messages):
 
 ```bash
-./venv/bin/python3 simulator/attack_dos.py
+docker compose run --rm attack-dos
 ```
 
 Expected: `DoS` alert with high anomaly score.

@@ -7,14 +7,7 @@ import paho.mqtt.client as mqtt
 
 
 def get_broker_host():
-    broker_host = os.getenv("BROKER_HOST")
-    if broker_host:
-        return broker_host
-
-    if os.getenv("WSL_DISTRO_NAME"):
-        return "host.docker.internal"
-
-    return "localhost"
+    return os.getenv("BROKER_HOST", "localhost")
 
 
 BROKER_HOST = get_broker_host()
