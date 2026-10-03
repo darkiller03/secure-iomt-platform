@@ -76,7 +76,7 @@ flowchart TD
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-org/secure-iomt-platform.git
+git clone https://github.com/darkiller03/secure-iomt-platform.git
 cd secure-iomt-platform
 ```
 
